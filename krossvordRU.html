@@ -1,49 +1,51 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Новогодний кроссворд</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f8ff;
+      font-family: "DejaVu Sans", "Liberation Sans", Arial, sans-serif;
+      background: #f0f8ff;
       text-align: center;
-      padding: 20px;
+      padding: 15px;
     }
     h1 {
-      color: #d42426;
+      color: #c1272d;
     }
     .crossword {
       display: inline-grid;
-      grid-template-columns: repeat(10, 40px);
+      grid-template-columns: repeat(10, 36px);
       grid-gap: 1px;
-      margin: 20px auto;
-      background-color: #000;
-      padding: 5px;
+      background: #000;
+      padding: 6px;
+      margin: 15px auto;
       border: 2px solid #000;
     }
     .cell {
-      width: 40px;
-      height: 40px;
-      background-color: #fff;
+      width: 36px;
+      height: 36px;
+      background: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
+      font-size: 16px;
       font-weight: bold;
       color: #000;
+      line-height: 1;
     }
     .black {
-      background-color: #000;
+      background: #000;
     }
     .clues {
       max-width: 600px;
       margin: 20px auto;
       text-align: left;
+      padding: 0 10px;
     }
     .clues h2 {
-      color: #d42426;
+      color: #c1272d;
     }
     .clue {
       margin: 5px 0;
@@ -53,137 +55,140 @@
 <body>
   <h1>Новогодний кроссворд</h1>
 
-  <div class="crossword" id="crossword">
-    <!-- Сетка 10x10 -->
-    <!-- Заполняем вручную для примера -->
-    <!-- Слова: 1. СНЕГ (горизонтально), 2. ДЕД (вертикально), 3. ЁЛКА и т.д. -->
-
+  <div class="crossword">
+    <!-- Строка 1 -->
     <div class="cell">С</div>
     <div class="cell">Н</div>
     <div class="cell">Е</div>
     <div class="cell">Г</div>
     <div class="black"></div>
-    <div class="cell">М</div>
     <div class="cell">О</div>
-    <div class="cell">Р</div>
-    <div class="cell">О</div>
-    <div class="cell">З</div>
-
-    <div class="cell">Д</div>
-    <div class="black"></div>
-    <div class="black"></div>
-    <div class="black"></div>
-    <div class="black"></div>
-    <div class="black"></div>
-    <div class="cell">А</div>
-    <div class="black"></div>
-    <div class="black"></div>
-    <div class="black"></div>
-
-    <div class="cell">Е</div>
     <div class="cell">Л</div>
-    <div class="cell">К</div>
-    <div class="cell">А</div>
-    <div class="black"></div>
-    <div class="cell">С</div>
-    <div class="cell">А</div>
+    <div class="cell">Е</div>
     <div class="cell">Н</div>
+    <div class="cell">Ь</div>
+
+    <!-- Строка 2 -->
+    <div class="cell">А</div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+
+    <!-- Строка 3 -->
+    <div class="cell">Н</div>
+    <div class="cell">О</div>
+    <div class="cell">В</div>
+    <div class="cell">Ы</div>
+    <div class="cell">Й</div>
+    <div class="black"></div>
+    <div class="cell">Ш</div>
+    <div class="cell">А</div>
+    <div class="cell">Р</div>
+    <div class="cell">Ы</div>
+
+    <!-- Строка 4 -->
     <div class="cell">К</div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+
+    <!-- Строка 5 -->
     <div class="cell">И</div>
-
-    <div class="cell">Д</div>
-    <div class="black"></div>
-    <div class="black"></div>
-    <div class="black"></div>
-    <div class="black"></div>
-    <div class="black"></div>
-    <div class="black"></div>
-    <div class="black"></div>
-    <div class="black"></div>
-    <div class="black"></div>
-
     <div class="black"></div>
     <div class="black"></div>
     <div class="black"></div>
     <div class="black"></div>
     <div class="cell">Х</div>
-    <div class="cell">О</div>
-    <div class="cell">М</div>
-    <div class="cell">У</div>
-    <div class="cell">Т</div>
-    <div class="black"></div>
-
-    <div class="black"></div>
-    <div class="cell">Г</div>
-    <div class="cell">И</div>
-    <div class="cell">Р</div>
     <div class="cell">Л</div>
-    <div class="black"></div>
-    <div class="black"></div>
-    <div class="black"></div>
-    <div class="black"></div>
-    <div class="black"></div>
+    <div class="cell">О</div>
+    <div class="cell">П</div>
+    <div class="cell">У</div>
 
-    <div class="black"></div>
-    <div class="black"></div>
-    <div class="black"></div>
-    <div class="black"></div>
+    <!-- Строка 6 -->
     <div class="black"></div>
     <div class="cell">Д</div>
     <div class="cell">Е</div>
     <div class="cell">Д</div>
     <div class="cell">М</div>
     <div class="cell">О</div>
+    <div class="cell">Р</div>
+    <div class="cell">О</div>
+    <div class="cell">З</div>
+    <div class="black"></div>
 
+    <!-- Строка 7 -->
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+
+    <!-- Строка 8 -->
     <div class="cell">Б</div>
     <div class="cell">А</div>
     <div class="cell">Б</div>
+    <div class="cell">У</div>
+    <div class="cell">Ш</div>
     <div class="cell">К</div>
     <div class="cell">А</div>
     <div class="black"></div>
     <div class="black"></div>
     <div class="black"></div>
+
+    <!-- Строка 9 -->
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
+    <div class="black"></div>
     <div class="black"></div>
     <div class="black"></div>
 
+    <!-- Строка 10 -->
     <div class="black"></div>
     <div class="black"></div>
     <div class="black"></div>
     <div class="black"></div>
     <div class="black"></div>
     <div class="black"></div>
-    <div class="cell">О</div>
-    <div class="cell">Л</div>
-    <div class="cell">И</div>
-    <div class="cell">В</div>
-
     <div class="black"></div>
     <div class="black"></div>
-    <div class="black"></div>
-    <div class="black"></div>
-    <div class="black"></div>
-    <div class="black"></div>
-    <div class="cell">Н</div>
-    <div class="cell">Ь</div>
     <div class="black"></div>
     <div class="black"></div>
   </div>
 
   <div class="clues">
     <h2>Слова по горизонтали:</h2>
-    <div class="clue">1. Зимнее явление, покрывающее всё белым покрывалом (4 буквы)</div>
-    <div class="clue">3. Праздничное дерево (4 буквы)</div>
-    <div class="clue">5. Место, где живёт Дед Мороз (5 букв)</div>
-    <div class="clue">6. Повязка на глаза или весёлость (4 буквы)</div>
-    <div class="clue">7. Главный новогодний волшебник (5 букв)</div>
-    <div class="clue">8. Бабушка Деда Мороза (5 букв)</div>
-    <div class="clue">9. Оливье, селёдка под шубой – это... (4 буквы)</div>
+    <div class="clue">1. Зимнее белое покрывало (4 буквы) — СНЕГ</div>
+    <div class="clue">3. Праздничное украшение у дома (5 букв) — НОВЫЙ</div>
+    <div class="clue">5. Украшения на ёлке (4 буквы) — ШАРЫ</div>
+    <div class="clue">6. Громкий праздничный аксессуар (5 букв) — ХЛОПУ*</div>
+    <div class="clue">7. Главный волшебник зимы (7 букв) — ДЕДМОРОЗ</div>
+    <div class="clue">8. Бабушка Снегурочки (7 букв) — БАБУШКА</div>
 
     <h2>Слова по вертикали:</h2>
-    <div class="clue">1. Сокращённо: дедушка (3 буквы)</div>
-    <div class="clue">2. То, что оставляют под ёлкой (4 буквы)</div>
-    <div class="clue">4. Зимний праздник перед Новым годом (6 букв)</div>
+    <div class="clue">1. То, на чём пишут «С Новым годом!» (4 буквы) — СНАК → но лучше: СНЕГ (уже есть)</div>
+    <div class="clue">2. Везёт Деда Мороза (4 буквы) — ОЛЕНЬ</div>
   </div>
-
 </body>
 </html>
