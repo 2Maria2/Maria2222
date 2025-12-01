@@ -6,24 +6,24 @@
 }
 
 body {
-    background-color: #f5f5dc; /* бежевый цвет вместо #d2b48c */
+    background-color: #ffff00; /* жёлтый цвет */
     color: #000000; /* чёрный цвет шрифта */
     margin-left: 20%;
     margin-right: 20%;
     border: 2px dotted black;
-    padding: 10px 10px 10px 10px;
-    font-family: sans-serif; /* исправлено: без пробела */
+    padding: 10px;
+    font-family: sans-serif; /* исправлено: sans-serif вместо sans serif */
 }
 
 blockquote.q {
-    color: #D4AF37;
+    color: #000000; /* чёрный цвет для цитаты */
     border-left: 4px solid #8B0000;
     font-style: italic;
-    padding-left: 10px; /* добавил отступ для цитаты */
-    margin-left: 0;
+    padding-left: 15px; /* добавлен отступ слева для цитаты */
+    margin: 15px 0;
 }
 
 p.quote { 
     font-family: "Pudelinka", cursive;
-    color: #000000; /* чёрный цвет для цитат */
+    color: #000000; /* чёрный цвет для текста с классом quote */
 }
