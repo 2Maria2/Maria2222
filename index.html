@@ -103,6 +103,7 @@
 </body>
 </html>
 <h2>19 января, 2026</h2>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Решение шифра Цезаря</title>
@@ -110,7 +111,37 @@
     body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 700px; margin: 2rem auto; padding: 0 1rem; }
     h2 { color: #2c3e50; margin-top: 1.5rem; }
     .task { margin-bottom: 1.2rem; }
-…    <div class="answer">Шифротекст: <code>МТЬИНТЧК</code></div>
+    .answer { background: #f8f9fa; padding: 0.5rem 1rem; border-left: 4px solid #3498db; margin: 0.5rem 0; }
+  </style>
+</head>
+<body>
+
+  <h1>Решение задач на шифр Цезаря (русский алфавит, 32 буквы)</h1>
+
+  <h2>1. Определение ключа по паре «открытый текст – шифротекст»</h2>
+  <div class="task">
+    <p><strong>а.</strong> АПЕЛЬСИН → САЦЬНВЩЮ</p>
+    <div class="answer">Ключ: <code>17</code></div>
+  </div>
+  <div class="task">
+    <p><strong>б.</strong> АБРИКОС → ЫЬЛГЕЙМ</p>
+    <div class="answer">Ключ: <code>27</code></div>
+  </div>
+
+  <h2>2. Расшифровка сообщений (ключ неизвестен, 0 &lt; k &lt; 32)</h2>
+  <div class="task">
+    <p><strong>а.</strong> ФХНЗКЧ</p>
+    <div class="answer">Расшифровка: <code>ПРИВЕТ</code> (ключ = 5)</div>
+  </div>
+  <div class="task">
+    <p><strong>б.</strong> ЦЩЕБФ</p>
+    <div class="answer">Расшифровка: <code>ВЕСНА</code> (ключ = 20)</div>
+  </div>
+
+  <h2>3. Шифрование слова с заданным ключом</h2>
+  <div class="task">
+    <p>Слово: <strong>Витюгина</strong>, ключ = 10</p>
+    <div class="answer">Шифротекст: <code>МТЬИНТЧК</code></div>
   </div>
 
   <p><em>Алфавит: А–Я без «Ё» (32 буквы). Нумерация с 0.</em></p>
