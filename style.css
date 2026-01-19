@@ -1,29 +1,31 @@
 @font-face {
     font-family: "Pudelinka";
-    src: url("Fonts/pudelinka.ttf") format('truetype');
+    src: 
+        local("Pudelinka"),
+        url("Fonts/pudelinka.ttf") format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 body {
-    background-color: #ffff00; /* жёлтый цвет */
-    color: #000000; /* чёрный цвет шрифта */
-    margin-left: 20%;
-    margin-right: 20%;
-    border: 2px dotted black;
+    background-color: #E6E6FA; /* светло-сиреневый (Lavender) */
+    color: #000000; /* чёрный текст для контраста */
+    max-width: 800px;
+    margin: 0 auto;
     padding: 10px;
-    font-family: sans-serif; /* исправлено: sans-serif вместо sans serif */
+    border: 2px dotted black;
+    font-family: sans-serif;
 }
 
 blockquote.q {
-    color: #000000; /* чёрный цвет для цитаты */
-    border-left: 4px solid #8B0000;
+    color: #000000;
+    border-left: 4px solid #8B0000; /* тёмно-бордовый акцент */
     font-style: italic;
-    padding-left: 15px; /* добавлен отступ слева для цитаты */
+    padding-left: 15px;
     margin: 15px 0;
 }
 
-p.quote { 
+p.quote {
     font-family: "Pudelinka", cursive;
-    color: #000000; /* чёрный цвет для текста с классом quote */
+    color: #000000;
 }
