@@ -1,4 +1,4 @@
-@font-face {
+,@font-face {
     font-family: "Pudelinka";
     src: 
         local("Pudelinka"),
@@ -8,7 +8,7 @@
 }
 
 body {
-    background-color: #E6E6FA; /* светло-сиреневый (Lavender) */
+    background-color:#E6E6FA; /* светло-сиреневый (Lavender) */
     color: #000000; /* чёрный текст для контраста */
     max-width: 800px;
     margin: 0 auto;
