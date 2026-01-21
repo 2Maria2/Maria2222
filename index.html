@@ -112,6 +112,144 @@
     </tbody>
   </table>
   <p><em>💡 Доменное имя — это только <strong>2maria2.github.io</strong>. Остальное — служебная информация.</em></p>
+  <h2>21 января, 2026</h2>
+  <title>RSA Шифрование — Учебный Пример</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    .keys {
+      background: #e8f4fc;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      margin: 10px 5px 10px 0;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 12px;
+      background: #fff;
+      border-left: 4px solid #27ae60;
+      font-family: monospace;
+      font-size: 16px;
+    }
+    .error {
+      border-left-color: #e74c3c;
+      color: #c0392b;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>RSA Шифрование (учебный пример)</h1>
+
+  <div class="keys">
+    <p><strong>Открытый ключ:</strong> (e = 3, n = 15)</p>
+    <p><strong>Закрытый ключ:</strong> d = 3</p>
+    <p><em>Примечание: n = 15 = 3 × 5 — используется только для демонстрации!</em></p>
+  </div>
+
+  <label for="inputValue">Введите значение (целое число от 0 до 14):</label>
+  <input type="number" id="inputValue" min="0" max="14" value="2" />
+
+  <br />
+  <button onclick="encrypt()">🔒 Зашифровать (C = m<sup>e</sup> mod n)</button>
+  <button onclick="decrypt()">🔓 Расшифровать (m = C<sup>d</sup> mod n)</button>
+
+  <div id="output" class="result" style="display: none;"></div>
+
+  <script>
+    const e = 3;   // открытая экспонента
+    const d = 3;   // закрытая экспонента
+    const n = 15;  // модуль
+
+    // Быстрое возведение в степень по модулю
+    function modExp(base, exp, mod) {
+      if (mod === 1) return 0;
+      let result = 1;
+      base = base % mod;
+      while (exp > 0) {
+        if (exp % 2 === 1) {
+          result = (result * base) % mod;
+        }
+        exp = Math.floor(exp / 2);
+        base = (base * base) % mod;
+      }
+      return result;
+    }
+
+    function encrypt() {
+      const m = parseInt(document.getElementById('inputValue').value);
+      const outputDiv = document.getElementById('output');
+
+      if (isNaN(m) || m < 0 || m >= n) {
+        outputDiv.textContent = 'Ошибка: m должно быть целым числом от 0 до 14.';
+        outputDiv.className = 'result error';
+        outputDiv.style.display = 'block';
+        return;
+      }
+
+      const c = modExp(m, e, n);
+      outputDiv.innerHTML = `Шифрование:<br> C = ${m}<sup>${e}</sup> mod ${n} = ${c}`;
+      outputDiv.className = 'result';
+      outputDiv.style.display = 'block';
+    }
+
+    function decrypt() {
+      const c = parseInt(document.getElementById('inputValue').value);
+      const outputDiv = document.getElementById('output');
+
+      if (isNaN(c) || c < 0 || c >= n) {
+        outputDiv.textContent = 'Ошибка: C должно быть целым числом от 0 до 14.';
+        outputDiv.className = 'result error';
+        outputDiv.style.display = 'block';
+        return;
+      }
+
+      const m = modExp(c, d, n);
+      outputDiv.innerHTML = `Расшифровка:<br> m = ${c}<sup>${d}</sup> mod ${n} = ${m}`;
+      outputDiv.className = 'result';
+      outputDiv.style.display = 'block';
+    }
+
+    // Нажатие Enter в поле ввода вызывает шифрование
+    document.getElementById('inputValue').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') encrypt();
+    });
+  </script>
 
 </body>
 </html>
