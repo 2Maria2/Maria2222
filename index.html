@@ -1,18 +1,39 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Мой блог — Maria2222</title>
-  <link type="text/css" rel="stylesheet" href="style.css" />
   <style>
-    /* Встроенные стили только для задачи по шифру (если style.css не содержит их) */
-    .task { margin-bottom: 1.2rem; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      color: #333;
+      background-color: #fff;
+    }
+    h1, h2, h3 {
+      color: #2c3e50;
+    }
+    blockquote {
+      margin: 1rem 0;
+      padding-left: 1rem;
+      border-left: 3px solid #ccc;
+      color: #555;
+      font-style: italic;
+    }
+    .task {
+      margin-bottom: 1.5rem;
+    }
     .answer {
-      background: #f8f9fa;
-      padding: 0.5rem 1rem;
+      background: #f9f9f9;
+      padding: 0.6rem 1rem;
       border-left: 4px solid #3498db;
-      margin: 0.5rem 0;
+      margin: 0.6rem 0;
+      font-family: monospace;
     }
     table {
       width: 100%;
@@ -20,12 +41,57 @@
       margin: 1rem 0;
     }
     th, td {
-      border: 1px solid #ccc;
+      border: 1px solid #ddd;
       padding: 8px;
       text-align: left;
     }
     th {
-      background-color: #ecf0f1;
+      background-color: #f5f5f5;
+    }
+    pre {
+      background: #f9f9f9;
+      padding: 12px;
+      border-left: 4px solid #3498db;
+      overflow-x: auto;
+    }
+    hr {
+      margin: 2.5rem 0;
+      border: 0;
+      border-top: 1px solid #eee;
+    }
+    a {
+      color: #2980b9;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+    }
+    input[type="text"] {
+      padding: 6px;
+      width: 100%;
+      max-width: 200px;
+      margin-top: 4px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      margin-top: 8px;
+      padding: 6px 12px;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #2980b9;
+    }
+    .section {
+      margin-bottom: 2rem;
     }
   </style>
 </head>
@@ -33,91 +99,122 @@
 
   <blockquote class="q">Путешествие в тысячу миль начинается с одного шага (Лао Цзы)</blockquote>
 
-  <h2>19 января, 2026</h2>
-  <h3>Решение задач на шифр Цезаря (русский алфавит, 32 буквы)</h3>
+  <!-- =============== RSA Section =============== -->
+  <div class="section">
+    <h2>21 января, 2026</h2>
+    <h3>RSA Шифрование (учебный пример)</h3>
+    <p>Пусть сообщение <code>m = 2</code> означает «анализ готов».</p>
+    <p>Условие: <code>m &lt; n</code> → <code>2 &lt; 15</code> → ✅</p>
+    <p><strong>Открытый ключ:</strong> (e = 3, n = 15)<br>
+       <strong>Закрытый ключ:</strong> d = 3</p>
 
-  <div class="task">
-    <p><strong>1. Определение ключа по паре «открытый текст – шифротекст»</strong></p>
-    <p><strong>а.</strong> АПЕЛЬСИН → САЦЬНВЩЮ</p>
-    <div class="answer">Ключ: <code>17</code></div>
-    <p><strong>б.</strong> АБРИКОС → ЫЬЛГЕЙМ</p>
-    <div class="answer">Ключ: <code>27</code></div>
+    <label for="input">Введите m (для шифрования) или C (для расшифровки):</label>
+    <input type="text" id="input" value="2">
+
+    <br>
+    <button onclick="encrypt()">Зашифровать</button>
+    <button onclick="decrypt()">Расшифровать</button>
+
+    <pre id="output"></pre>
+
+    <p><em>В реальности <code>n</code> — это число из 600+ десятичных цифр.</em></p>
   </div>
 
-  <div class="task">
-    <p><strong>2. Расшифровка сообщений (ключ неизвестен, 0 &lt; k &lt; 32)</strong></p>
-    <p><strong>а.</strong> ФХНЗКЧ</p>
-    <div class="answer">Расшифровка: <code>ПРИВЕТ</code> (ключ = 5)</div>
-    <p><strong>б.</strong> ЦЩЕБФ</p>
-    <div class="answer">Расшифровка: <code>ВЕСНА</code> (ключ = 20)</div>
+  <!-- =============== Caesar Cipher =============== -->
+  <div class="section">
+    <h2>19 января, 2026</h2>
+    <h3>Решение задач на шифр Цезаря (русский алфавит, 32 буквы)</h3>
+
+    <div class="task">
+      <p><strong>1. Определение ключа по паре «открытый текст – шифротекст»</strong></p>
+      <p><strong>а.</strong> АПЕЛЬСИН → САЦЬНВЩЮ</p>
+      <div class="answer">Ключ: <code>17</code></div>
+      <p><strong>б.</strong> АБРИКОС → ЫЬЛГЕЙМ</p>
+      <div class="answer">Ключ: <code>27</code></div>
+    </div>
+
+    <div class="task">
+      <p><strong>2. Расшифровка сообщений (ключ неизвестен, 0 &lt; k &lt; 32)</strong></p>
+      <p><strong>а.</strong> ФХНЗКЧ</p>
+      <div class="answer">Расшифровка: <code>ПРИВЕТ</code> (ключ = 5)</div>
+      <p><strong>б.</strong> ЦЩЕБФ</p>
+      <div class="answer">Расшифровка: <code>ВЕСНА</code> (ключ = 20)</div>
+    </div>
+
+    <div class="task">
+      <p><strong>3. Шифрование слова с заданным ключом</strong></p>
+      <p>Слово: <strong>Витюгина</strong>, ключ = 10</p>
+      <div class="answer">Шифротекст: <code>МТЬИНТЧК</code></div>
+    </div>
+    <p><em>Алфавит: А–Я без «Ё» (32 буквы). Нумерация с 0.</em></p>
   </div>
 
-  <div class="task">
-    <p><strong>3. Шифрование слова с заданным ключом</strong></p>
-    <p>Слово: <strong>Витюгина</strong>, ключ = 10</p>
-    <div class="answer">Шифротекст: <code>МТЬИНТЧК</code></div>
+  <!-- =============== Other Entries =============== -->
+  <div class="section">
+    <h2>14 января, 2026</h2>
+    <p><a href="mailto:vituginamaria0@gmail.com">Напишите мне</a></p>
   </div>
-  <p><em>Алфавит: А–Я без «Ё» (32 буквы). Нумерация с 0.</em></p>
 
-  <h2>14 января, 2026</h2>
-  <p><a href="mailto:vituginamaria0@gmail.com">Напишите мне</a></p>
+  <div class="section">
+    <h2>20 декабря, 2025</h2>
+    <p>Поздравляю с наступающим рождеством 2026! <a href="Koladka.odt" title="колядка" download>Колядка 20.12.2025</a></p>
+    <p><a href="newTree.mp4" title="Новогодняя ёлка" download="Новогодняя_елка.mp4">Скачать видео с новогодней ёлкой (MP4)</a></p>
+  </div>
 
-  <h2>20 декабря, 2025</h2>
-  <p>Поздравляю с наступающим рождеством 2026! <a href="Koladka.odt" title="колядка" download>Колядка 20.12.2025</a></p>
-  <p><a href="newTree.mp4" title="Новогодняя ёлка" download="Новогодняя_елка.mp4">Скачать видео с новогодней ёлкой (MP4)</a></p>
+  <div class="section">
+    <h2>01.12.2025</h2>
+    <img src="Icons/free-icon-stars-2300158.png" alt="Новый год" style="height: 24px; vertical-align: middle;" />
+    Поздравление с Наступающим 2026 годом читайте <a href="Congratulations2026.html">здесь</a>.
+  </div>
 
-  
-  <h2>01.12.2025</h2>
-<img src="Icons/free-icon-stars-2300158.png" alt="Новый год" style="height: 48px; vertical-align: middle;" />
-Поздравление с Наступающим 2026 годом читайте <a href="Congratulations2026.html">здесь</a>.
+  <div class="section">
+    <h2>15 октября, 2025</h2>
+    <p>Я сделала Новогодние кроссворды для сайта <a href="http://dimaderg01-jpg.github.io/123/" title="Блог моего друга">Сайт моего друга</a>.</p>
+  </div>
 
-  <h2>15 октября, 2025</h2>
-  <p>
-    Я сделала Новогодние кроссворды для сайта <a href="http://dimaderg01-jpg.github.io/123/" title="Блог моего друга">Сайт моего друга</a>.
-  </p>
+  <div class="section">
+    <h2>1 сентября, 2025</h2>
+    <blockquote>Путешествие в тысячу миль начинается с одного шага (Лао Цзы)</blockquote>
+    <p>Оставляю в прошлом скучную неинтересную локальную файловую систему ради Всемирной паутины.</p>
+    <p>
+      <a href="krossvordRU.html">Русский кроссворд</a> |
+      <a href="krossvordEN.html">Английский кроссворд</a>
+    </p>
+    <p>Нажмите, чтобы открыть или скачать презентацию: <a href="СетьВводный.pptx">Презентация в формате .pptx</a></p>
+    <p>Нажмите, чтобы открыть или скачать index.html: <a href="index.html">Файл проверки работы с кириллицей .html</a></p>
+    <p>Иконки: <a href="https://www.flaticon.com/ru/free-icons/" title="украшение иконки">Украшение иконки от Victoruler - Flaticon</a></p>
+  </div>
 
-  <h2>1 сентября, 2025</h2>
-  <blockquote>Путешествие в тысячу миль начинается с одного шага (Лао Цзы)</blockquote>
-  <p>Оставляю в прошлом скучную неинтересную локальную файловую систему ради Всемирной паутины.</p>
-  <p>
-    <a href="krossvordRU.html">Русский кроссворд</a> |
-    <a href="krossvordEN.html">Английский кроссворд</a>
-  </p>
-  <p>Нажмите, чтобы открыть или скачать презентацию: <a href="СетьВводный.pptx">Презентация в формате .pptx</a></p>
-  <p>Нажмите, чтобы открыть или скачать index.html: <a href="index.html">Файл проверки работы с кириллицей .html</a></p>
-  <p>Иконки: <a href="https://www.flaticon.com/ru/free-icons/" title="украшение иконки">Украшение иконки от Victoruler - Flaticon</a></p>
+  <hr />
 
-  <hr style="margin: 2rem 0;" />
+  <!-- =============== Domain Structure =============== -->
+  <div class="section">
+    <h2>Структура моего домена</h2>
+    <p>Мой сайт: <a href="https://2maria2.github.io/Maria2222/">https://2maria2.github.io/Maria2222/</a></p>
+    <p>Из каких имён и на каких уровнях состоит домен?</p>
+    <p>Полный URL содержит не только домен, но и протокол + путь. Вот разбор по уровням:</p>
 
-  <h2>Структура моего домена</h2>
-  <p>Мой сайт: <a href="https://2maria2.github.io/Maria2222/">https://2maria2.github.io/Maria2222/</a></p>
-  <p>Из каких имён и на каких уровнях состоит домен?</p>
-  <p>Полный URL содержит не только домен, но и протокол + путь. Вот разбор по уровням:</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Уровень</th>
+          <th>Часть URL</th>
+          <th>Назначение</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><code>https://</code></td><td>Протокол передачи данных</td></tr>
+        <tr><td>2</td><td><code>2maria2.github.io</code></td><td>Полное доменное имя (FQDN)</td></tr>
+        <tr><td>2a</td><td><code>.io</code></td><td>Домен верхнего уровня (TLD)</td></tr>
+        <tr><td>2b</td><td><code>github.io</code></td><td>Второй уровень — сервис GitHub Pages</td></tr>
+        <tr><td>2c</td><td><code>2maria2</code></td><td>Поддомен — имя пользователя на GitHub</td></tr>
+        <tr><td>3</td><td><code>/Maria2222/</code></td><td>Путь к репозиторию (не часть домена)</td></tr>
+      </tbody>
+    </table>
+    <p><em>💡 Доменное имя — это только <strong>2maria2.github.io</strong>. Остальное — служебная информация.</em></p>
+  </div>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Уровень</th>
-        <th>Часть URL</th>
-        <th>Назначение</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>1</td><td><code>https://</code></td><td>Протокол передачи данных</td></tr>
-      <tr><td>2</td><td><code>2maria2.github.io</code></td><td>Полное доменное имя (FQDN)</td></tr>
-      <tr><td>2a</td><td><code>.io</code></td><td>Домен верхнего уровня (TLD)</td></tr>
-      <tr><td>2b</td><td><code>github.io</code></td><td>Второй уровень — сервис GitHub Pages</td></tr>
-      <tr><td>2c</td><td><code>2maria2</code></td><td>Поддомен — имя пользователя на GitHub</td></tr>
-      <tr><td>3</td><td><code>/Maria2222/</code></td><td>Путь к репозиторию (не часть домена)</td></tr>
-    </tbody>
-  </table>
-  <p><em>💡 Доменное имя — это только <strong>2maria2.github.io</strong>. Остальное — служебная информация.</em></p>
-  <h2>21 января, 2026</h2>
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <title>RSA Шифрование</title>
+  <!-- =============== JavaScript for RSA =============== -->
   <script>
     const e = 3;
     const d = 3;
@@ -164,7 +261,7 @@
         return;
       }
       const C = Number(input);
-      if (!Number.isInteger(C) || C < 0) {
+      if (!Number.is Integer(C) || C < 0) {
         document.getElementById('output').innerText = 'Ошибка: C должно быть целым неотрицательным числом.';
         return;
       }
@@ -178,25 +275,6 @@
         'm = C^d mod n = ' + C + '^' + d + ' mod ' + n + ' = ' + m;
     }
   </script>
-</head>
-<body>
-  <h1>RSA Шифрование (учебный пример)</h1>
-  <p>Пусть сообщение m = 2 означает «анализ готов».</p>
-  <p>Условие: m &lt; n → 2 &lt; 15 → ✅</p>
-  <p>Открытый ключ: (e = 3, n = 15)<br>
-     Закрытый ключ: d = 3</p>
-
-  <label>Введите m (для шифрования) или C (для расшифровки):</label><br>
-  <input type="text" id="input" value="2"><br><br>
-
-  <button onclick="encrypt()">Зашифровать</button>
-  <button onclick="decrypt()">Расшифровать</button>
-
-  <pre id="output"></pre>
-
-  <p>В реальности n — это число из 600+ десятичных цифр.</p>
-</body>
-</html>
 
 </body>
 </html>
