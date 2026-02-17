@@ -2,565 +2,576 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Результаты классификации</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Мой блог — Maria2222</title>
+  <link type="text/css" rel="stylesheet" href="style.css" />
+  <style>
+    /* Встроенные стили для задач по шифру */
+    .task { margin-bottom: 1.2rem; }
+    .answer {
+      background: #f8f9fa;
+      padding: 0.5rem 1rem;
+      border-left: 4px solid #3498db;
+      margin: 0.5rem 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #ecf0f1;
+    }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
+    /* Стили для карточки предсказаний */
+    .prediction-card {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      overflow: hidden;
+      max-width: 500px;
+      width: 100%;
+      margin: 2rem auto;
+    }
 
-        .card {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            overflow: hidden;
-            max-width: 520px;
-            width: 100%;
-        }
+    .prediction-card .card-header {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: white;
+      padding: 20px 24px;
+    }
 
-        .card-header {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: white;
-            padding: 20px 24px;
-        }
+    .prediction-card .date {
+      font-size: 14px;
+      font-weight: 500;
+      opacity: 0.9;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-        .date {
-            font-size: 14px;
-            font-weight: 500;
-            opacity: 0.9;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+    .prediction-card .card-body {
+      padding: 24px;
+    }
 
-        .card-body {
-            padding: 24px;
-        }
+    .prediction-card .image-wrapper {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+    }
 
-        .image-wrapper {
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            margin-bottom: 24px;
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
-        }
+    .prediction-card .image-wrapper img {
+      width: 100%;
+      height: 340px;
+      object-fit: cover;
+      display: block;
+    }
 
-        .image-wrapper img {
-            width: 100%;
-            height: 340px;
-            object-fit: cover;
-            display: block;
-        }
+    .prediction-card .image-label {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(0, 0, 0, 0.75);
+      color: white;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
 
-        .image-label {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background: rgba(0, 0, 0, 0.75);
-            color: white;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-        }
+    .prediction-card .predictions-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 16px;
+    }
 
-        .predictions-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: #1a1a2e;
-            margin-bottom: 16px;
-        }
+    .prediction-card .predictions-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
 
-        .predictions-list {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
+    .prediction-card .prediction-item {
+      background: #f8f9fa;
+      border-radius: 12px;
+      padding: 16px;
+      border-left: 4px solid #667eea;
+    }
 
-        .prediction-item {
-            background: #f8f9fa;
-            border-radius: 12px;
-            padding: 16px;
-            border-left: 4px solid #667eea;
-            transition: transform 0.2s ease;
-        }
+    .prediction-card .prediction-item.top-1 {
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      border-left-color: #f59e0b;
+    }
 
-        .prediction-item:hover {
-            transform: translateX(5px);
-        }
+    .prediction-card .prediction-item.top-2 {
+      background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);
+      border-left-color: #6b7280;
+    }
 
-        .prediction-item.top-1 {
-            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-            border-left-color: #f59e0b;
-        }
+    .prediction-card .prediction-item.top-3 {
+      background: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%);
+      border-left-color: #ea580c;
+    }
 
-        .prediction-item.top-2 {
-            background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);
-            border-left-color: #6b7280;
-        }
+    .prediction-card .prediction-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
 
-        .prediction-item.top-3 {
-            background: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%);
-            border-left-color: #ea580c;
-        }
+    .prediction-card .prediction-name {
+      font-weight: 600;
+      color: #1a1a2e;
+      font-size: 15px;
+      text-transform: capitalize;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-        .prediction-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
+    .prediction-card .rank-badge {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 12px;
+      color: white;
+    }
 
-        .prediction-name {
-            font-weight: 600;
-            color: #1a1a2e;
-            font-size: 15px;
-            text-transform: capitalize;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+    .prediction-card .rank-1 { background: #f59e0b; }
+    .prediction-card .rank-2 { background: #6b7280; }
+    .prediction-card .rank-3 { background: #ea580c; }
 
-        .rank-badge {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 12px;
-            color: white;
-        }
+    .prediction-card .prediction-percent {
+      font-weight: 700;
+      font-size: 16px;
+      color: #667eea;
+    }
 
-        .rank-1 { background: #f59e0b; }
-        .rank-2 { background: #6b7280; }
-        .rank-3 { background: #ea580c; }
+    .prediction-card .progress-bar {
+      height: 8px;
+      background: #e5e7eb;
+      border-radius: 4px;
+      overflow: hidden;
+    }
 
-        .prediction-percent {
-            font-weight: 700;
-            font-size: 16px;
-            color: #667eea;
-        }
+    .prediction-card .progress-fill {
+      height: 100%;
+      border-radius: 4px;
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+      transition: width 1s ease-out;
+    }
 
-        .progress-bar {
-            height: 8px;
-            background: #e5e7eb;
-            border-radius: 4px;
-            overflow: hidden;
-        }
+    .prediction-card .top-1 .progress-fill {
+      background: linear-gradient(90deg, #f59e0b 0%, #d97706 100%);
+    }
 
-        .progress-fill {
-            height: 100%;
-            border-radius: 4px;
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-            transition: width 1s ease-out;
-        }
+    .prediction-card .top-2 .progress-fill {
+      background: linear-gradient(90deg, #6b7280 0%, #4b5563 100%);
+    }
 
-        .top-1 .progress-fill {
-            background: linear-gradient(90deg, #f59e0b 0%, #d97706 100%);
-        }
+    .prediction-card .top-3 .progress-fill {
+      background: linear-gradient(90deg, #ea580c 0%, #c2410c 100%);
+    }
 
-        .top-2 .progress-fill {
-            background: linear-gradient(90deg, #6b7280 0%, #4b5563 100%);
-        }
+    .prediction-card .card-footer {
+      padding: 16px 24px 20px;
+      border-top: 1px solid #e5e7eb;
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: #6b7280;
+    }
 
-        .top-3 .progress-fill {
-            background: linear-gradient(90deg, #ea580c 0%, #c2410c 100%);
-        }
+    .prediction-card .model-badge {
+      background: #f3f4f6;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-weight: 500;
+    }
 
-        /* Новая секция - информация о классификации */
-        .classification-info {
-            margin-top: 24px;
-            padding: 20px;
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            border-radius: 12px;
-            border: 1px solid #bae6fd;
-        }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-        .info-title {
-            font-size: 14px;
-            font-weight: 700;
-            color: #0369a1;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+    .prediction-card .prediction-item {
+      animation: fadeIn 0.4s ease-out forwards;
+      opacity: 0;
+    }
 
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-        }
+    .prediction-card .prediction-item:nth-child(1) { animation-delay: 0.1s; }
+    .prediction-card .prediction-item:nth-child(2) { animation-delay: 0.2s; }
+    .prediction-card .prediction-item:nth-child(3) { animation-delay: 0.3s; }
 
-        .info-item {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
+    /* Стили для RSA секции */
+    .rsa-section {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 12px;
+      margin: 2rem 0;
+    }
+    .rsa-section input {
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      margin: 10px 0;
+    }
+    .rsa-section button {
+      padding: 10px 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-right: 10px;
+    }
+    .rsa-section button:hover {
+      opacity: 0.9;
+    }
+    .rsa-section pre {
+      background: #1a1a2e;
+      color: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin-top: 15px;
+    }
 
-        .info-label {
-            font-size: 11px;
-            color: #64748b;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .info-value {
-            font-size: 14px;
-            font-weight: 600;
-            color: #1e293b;
-        }
-
-        /* Секция заметок */
-        .notes-section {
-            margin-top: 16px;
-            padding: 16px;
-            background: #fef3c7;
-            border-radius: 12px;
-            border-left: 4px solid #f59e0b;
-        }
-
-        .notes-title {
-            font-size: 13px;
-            font-weight: 700;
-            color: #92400e;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .notes-text {
-            font-size: 13px;
-            color: #78350f;
-            line-height: 1.5;
-        }
-
-        .card-footer {
-            padding: 16px 24px 20px;
-            border-top: 1px solid #e5e7eb;
-            margin-top: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 12px;
-            color: #6b7280;
-        }
-
-        .model-badge {
-            background: #f3f4f6;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-weight: 500;
-        }
-
-        /* Кнопки действий */
-        .action-buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .btn {
-            flex: 1;
-            padding: 12px 16px;
-            border: none;
-            border-radius: 10px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px -10px rgba(102, 126, 234, 0.5);
-        }
-
-        .btn-secondary {
-            background: #f3f4f6;
-            color: #1a1a2e;
-        }
-
-        .btn-secondary:hover {
-            background: #e5e7eb;
-        }
-
-        /* Анимация */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .prediction-item {
-            animation: fadeIn 0.4s ease-out forwards;
-            opacity: 0;
-        }
-
-        .prediction-item:nth-child(1) { animation-delay: 0.1s; }
-        .prediction-item:nth-child(2) { animation-delay: 0.2s; }
-        .prediction-item:nth-child(3) { animation-delay: 0.3s; }
-
-        .classification-info {
-            animation: fadeIn 0.5s ease-out 0.4s forwards;
-            opacity: 0;
-        }
-
-        .notes-section {
-            animation: fadeIn 0.5s ease-out 0.5s forwards;
-            opacity: 0;
-        }
-    </style>
+    /* Общие стили страницы */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+    .q {
+      font-style: italic;
+      border-left: 4px solid #667eea;
+      padding-left: 15px;
+      margin: 20px 0;
+      color: #555;
+    }
+    h2 {
+      color: #1a1a2e;
+      border-bottom: 2px solid #667eea;
+      padding-bottom: 10px;
+      margin-top: 30px;
+    }
+    a {
+      color: #667eea;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    code {
+      background: #f3f4f6;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+    }
+  </style>
 </head>
 <body>
-    <div class="card">
-        <div class="card-header">
-            <div class="date" id="dateDisplay">
-                📅 <span id="currentDate"></span>
-            </div>
-        </div>
+  <div class="container">
+    <blockquote class="q">Путешествие в тысячу миль начинается с одного шага (Лао Цзы)</blockquote>
 
-        <div class="card-body">
-            <div class="image-wrapper">
-                <img src="https://image.qwenlm.ai/public_source/7d12d8bc-a4a6-485d-86f5-edfafb43bf3d/1c4da2259-3420-417e-bddb-8ef46fdb560d.png" alt="Классифицированное изображение">
-                <span class="image-label">📷 Изображение</span>
-            </div>
+    <h2>19 января, 2026</h2>
+    <h3>Решение задач на шифр Цезаря (русский алфавит, 32 буквы)</h3>
 
-            <h2 class="predictions-title">🏆 Топ-3 предсказаний</h2>
-
-            <div class="predictions-list">
-                <div class="prediction-item top-1">
-                    <div class="prediction-row">
-                        <span class="prediction-name">
-                            <span class="rank-badge rank-1">1</span>
-                            Ruffed Grouse
-                        </span>
-                        <span class="prediction-percent">16.64%</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 0%" data-width="83.2%"></div>
-                    </div>
-                </div>
-
-                <div class="prediction-item top-2">
-                    <div class="prediction-row">
-                        <span class="prediction-name">
-                            <span class="rank-badge rank-2">2</span>
-                            Ear of Corn
-                        </span>
-                        <span class="prediction-percent">9.55%</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 0%" data-width="47.75%"></div>
-                    </div>
-                </div>
-
-                <div class="prediction-item top-3">
-                    <div class="prediction-row">
-                        <span class="prediction-name">
-                            <span class="rank-badge rank-3">3</span>
-                            Marmoset
-                        </span>
-                        <span class="prediction-percent">9.40%</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 0%" data-width="47%"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Новая секция: Информация о классификации -->
-            <div class="classification-info">
-                <div class="info-title">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <line x1="12" y1="16" x2="12" y2="12"></line>
-                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                    </svg>
-                    Информация о классификации
-                </div>
-                <div class="info-grid">
-                    <div class="info-item">
-                        <span class="info-label">Время обработки</span>
-                        <span class="info-value" id="processTime">-- ms</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Уверенность модели</span>
-                        <span class="info-value" id="confidence">--%</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Всего классов</span>
-                        <span class="info-value">1000</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Размер изображения</span>
-                        <span class="info-value" id="imageSize">--</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Новая секция: Заметки -->
-            <div class="notes-section">
-                <div class="notes-title">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                        <path d="M2 17l10 5 10-5"></path>
-                        <path d="M2 12l10 5 10-5"></path>
-                    </svg>
-                    Примечание
-                </div>
-                <p class="notes-text">
-                    Модель не распознала птицу корректно. На изображении <strong>Какапо</strong> (совиный попугай), 
-                    которого нет в списке классов ImageNet-1000. Это редкая нелетающая птица из Новой Зеландии.
-                </p>
-            </div>
-
-            <!-- Кнопки действий -->
-            <div class="action-buttons">
-                <button class="btn btn-secondary" onclick="exportResults()">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                        <polyline points="7 10 12 15 17 10"></polyline>
-                        <line x1="12" y1="15" x2="12" y2="3"></line>
-                    </svg>
-                    Экспорт
-                </button>
-                <button class="btn btn-primary" onclick="classifyAgain()">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="23 4 23 10 17 10"></polyline>
-                        <polyline points="1 20 1 14 7 14"></polyline>
-                        <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
-                    </svg>
-                    Классифицировать снова
-                </button>
-            </div>
-
-            <div class="card-footer">
-                <span>Модель: <strong>ImageNet-1000</strong></span>
-                <span class="model-badge">ResNet-50</span>
-            </div>
-        </div>
+    <div class="task">
+      <p><strong>1. Определение ключа по паре «открытый текст – шифротекст»</strong></p>
+      <p><strong>а.</strong> АПЕЛЬСИН → САЦЬНВЩЮ</p>
+      <div class="answer">Ключ: <code>17</code></div>
+      <p><strong>б.</strong> АБРИКОС → ЫЬЛГЕЙМ</p>
+      <div class="answer">Ключ: <code>27</code></div>
     </div>
 
-    <script>
-        // Данные предсказаний
-        const predictions = [
-            { name: 'ruffed grouse', percent: 16.64, rank: 1 },
-            { name: 'ear of corn', percent: 9.55, rank: 2 },
-            { name: 'marmoset', percent: 9.40, rank: 3 }
-        ];
+    <div class="task">
+      <p><strong>2. Расшифровка сообщений (ключ неизвестен, 0 &lt; k &lt; 32)</strong></p>
+      <p><strong>а.</strong> ФХНЗКЧ</p>
+      <div class="answer">Расшифровка: <code>ПРИВЕТ</code> (ключ = 5)</div>
+      <p><strong>б.</strong> ЦЩЕБФ</p>
+      <div class="answer">Расшифровка: <code>ВЕСНА</code> (ключ = 20)</div>
+    </div>
 
-        // Установка текущей даты
-        function setDate() {
-            const now = new Date();
-            const options = { 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric',
-                weekday: 'long'
-            };
-            const dateString = now.toLocaleDateString('ru-RU', options);
-            document.getElementById('currentDate').textContent = dateString;
-        }
+    <div class="task">
+      <p><strong>3. Шифрование слова с заданным ключом</strong></p>
+      <p>Слово: <strong>Витюгина</strong>, ключ = 10</p>
+      <div class="answer">Шифротекст: <code>МТЬИНТЧК</code></div>
+    </div>
+    <p><em>Алфавит: А–Я без «Ё» (32 буквы). Нумерация с 0.</em></p>
 
-        // Анимация прогресс-баров
-        function animateProgress() {
-            setTimeout(() => {
-                document.querySelectorAll('.progress-fill').forEach(bar => {
-                    bar.style.width = bar.getAttribute('data-width');
-                });
-            }, 300);
-        }
+    <h2>14 января, 2026</h2>
+    <p><a href="mailto:vituginamaria0@gmail.com">Напишите мне</a></p>
 
-        // Установка информации о классификации
-        function setClassificationInfo() {
-            // Симуляция времени обработки
-            const processTime = Math.floor(Math.random() * 200) + 50;
-            document.getElementById('processTime').textContent = processTime + ' ms';
-            
-            // Уверенность модели (максимальный процент)
-            const confidence = predictions[0].percent;
-            document.getElementById('confidence').textContent = confidence.toFixed(2) + '%';
-            
-            // Размер изображения (симуляция)
-            document.getElementById('imageSize').textContent = '224×224 px';
-        }
+    <h2>20 декабря, 2025</h2>
+    <p>Поздравляю с наступающим рождеством 2026! <a href="Koladka.odt" title="колядка" download>Колядка 20.12.2025</a></p>
+    <p><a href="newTree.mp4" title="Новогодняя ёлка" download="Новогодняя_елка.mp4">Скачать видео с новогодней ёлкой (MP4)</a></p>
 
-        // Экспорт результатов
-        function exportResults() {
-            const data = {
-                date: new Date().toISOString(),
-                predictions: predictions,
-                model: 'ImageNet-1000',
-                architecture: 'ResNet-50'
-            };
-            
-            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'classification-results.json';
-            a.click();
-            URL.revokeObjectURL(url);
-            
-            alert('✅ Результаты экспортированы!');
-        }
+    <h2>01.12.2025</h2>
+    <img src="Icons/free-icon-stars-2300158.png" alt="Новый год" style="height: 48px; vertical-align: middle;" />
+    <p>Поздравление с Наступающим 2026 годом читайте <a href="Congratulations2026.html">здесь</a>.</p>
 
-        // Классифицировать снова
-        function classifyAgain() {
-            // Сброс прогресс-баров
-            document.querySelectorAll('.progress-fill').forEach(bar => {
-                bar.style.width = '0%';
-            });
-            
-            // Перезапуск анимации
-            setTimeout(() => {
-                animateProgress();
-            }, 100);
-            
-            // Обновление времени обработки
-            setClassificationInfo();
-            
-            alert('🔄 Классификация выполнена повторно!');
-        }
+    <h2>15 октября, 2025</h2>
+    <p>Я сделала Новогодние кроссворды для сайта <a href="http://dimaderg01-jpg.github.io/123/" title="Блог моего друга">Сайт моего друга</a>.</p>
 
-        // Инициализация
-        document.addEventListener('DOMContentLoaded', () => {
-            setDate();
-            animateProgress();
-            setClassificationInfo();
+    <h2>1 сентября, 2025</h2>
+    <blockquote>Путешествие в тысячу миль начинается с одного шага (Лао Цзы)</blockquote>
+    <p>Оставляю в прошлом скучную неинтересную локальную файловую систему ради Всемирной паутины.</p>
+    <p>
+      <a href="krossvordRU.html">Русский кроссворд</a> |
+      <a href="krossvordEN.html">Английский кроссворд</a>
+    </p>
+    <p>Нажмите, чтобы открыть или скачать презентацию: <a href="СетьВводный.pptx">Презентация в формате .pptx</a></p>
+    <p>Нажмите, чтобы открыть или скачать index.html: <a href="index.html">Файл проверки работы с кириллицей .html</a></p>
+    <p>Иконки: <a href="https://www.flaticon.com/ru/free-icons/" title="украшение иконки">Украшение иконки от Victoruler - Flaticon</a></p>
+
+    <hr style="margin: 2rem 0;" />
+
+    <h2>Структура моего домена</h2>
+    <p>Мой сайт: <a href="https://2maria2.github.io/Maria2222/">https://2maria2.github.io/Maria2222/</a></p>
+    <p>Из каких имён и на каких уровнях состоит домен?</p>
+    <p>Полный URL содержит не только домен, но и протокол + путь. Вот разбор по уровням:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Уровень</th>
+          <th>Часть URL</th>
+          <th>Назначение</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><code>https://</code></td><td>Протокол передачи данных</td></tr>
+        <tr><td>2</td><td><code>2maria2.github.io</code></td><td>Полное доменное имя (FQDN)</td></tr>
+        <tr><td>2a</td><td><code>.io</code></td><td>Домен верхнего уровня (TLD)</td></tr>
+        <tr><td>2b</td><td><code>github.io</code></td><td>Второй уровень — сервис GitHub Pages</td></tr>
+        <tr><td>2c</td><td><code>2maria2</code></td><td>Поддомен — имя пользователя на GitHub</td></tr>
+        <tr><td>3</td><td><code>/Maria2222/</code></td><td>Путь к репозиторию (не часть домена)</td></tr>
+      </tbody>
+    </table>
+    <p><em>💡 Доменное имя — это только <strong>2maria2.github.io</strong>. Остальное — служебная информация.</em></p>
+
+    <!-- Секция предсказаний классификации -->
+    <h2>21 января, 2026</h2>
+    <h3>🤖 Результаты классификации изображения (ImageNet)</h3>
+    
+    <div class="prediction-card">
+      <div class="card-header">
+        <div class="date" id="dateDisplay">
+          📅 <span id="currentDate"></span>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <div class="image-wrapper">
+          <img src="https://image.qwenlm.ai/public_source/7d12d8bc-a4a6-485d-86f5-edfafb43bf3d/1c4da2259-3420-417e-bddb-8ef46fdb560d.png" alt="Классифицированное изображение">
+          <span class="image-label">📷 Изображение</span>
+        </div>
+
+        <h2 class="predictions-title">🏆 Топ-3 предсказаний</h2>
+
+        <div class="predictions-list">
+          <div class="prediction-item top-1">
+            <div class="prediction-row">
+              <span class="prediction-name">
+                <span class="rank-badge rank-1">1</span>
+                Ruffed Grouse
+              </span>
+              <span class="prediction-percent">16.64%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 0%" data-width="83.2%"></div>
+            </div>
+          </div>
+
+          <div class="prediction-item top-2">
+            <div class="prediction-row">
+              <span class="prediction-name">
+                <span class="rank-badge rank-2">2</span>
+                Ear of Corn
+              </span>
+              <span class="prediction-percent">9.55%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 0%" data-width="47.75%"></div>
+            </div>
+          </div>
+
+          <div class="prediction-item top-3">
+            <div class="prediction-row">
+              <span class="prediction-name">
+                <span class="rank-badge rank-3">3</span>
+                Marmoset
+              </span>
+              <span class="prediction-percent">9.40%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 0%" data-width="47%"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <span>Модель: <strong>ImageNet-1000</strong></span>
+          <span class="model-badge">ResNet-50</span>
+        </div>
+      </div>
+    </div>
+
+    <p style="text-align: center; color: #666; font-style: italic;">
+      💡 Примечание: На изображении <strong>Какапо</strong> (совиный попугай), которого нет в списке классов ImageNet-1000. 
+      Это редкая нелетающая птица из Новой Зеландии, поэтому модель не смогла её корректно распознать.
+    </p>
+
+    <!-- RSA Шифрование -->
+    <h2>RSA Шифрование (учебный пример)</h2>
+    
+    <div class="rsa-section">
+      <p style="font-family: 'Pudelinka', cursive;">Пусть сообщение m = 2 означает «анализ готов».</p>
+      <p>Условие: m &lt; n → 2 &lt; 15 → ✅</p>
+      <p>Открытый ключ: (e = 3, n = 15)<br>
+         Закрытый ключ: d = 3</p>
+
+      <label for="rsaInput">Введите m (для шифрования) или C (для расшифровки):</label><br>
+      <input type="text" id="rsaInput" value="2"><br><br>
+
+      <button onclick="encryptRSA()">Зашифровать</button>
+      <button onclick="decryptRSA()">Расшифровать</button>
+
+      <pre id="rsaOutput"></pre>
+
+      <p style="margin-top: 15px; font-size: 13px; color: #666;">В реальности n — это число из 600+ десятичных цифр.</p>
+    </div>
+
+    <hr style="margin: 2rem 0;" />
+
+    <footer style="text-align: center; color: #666; font-size: 14px;">
+      <p>&copy; 2025-2026 Maria2222. Все права защищены.</p>
+    </footer>
+  </div>
+
+  <script>
+    // ==================== Дата для карточки предсказаний ====================
+    function setDate() {
+      const now = new Date();
+      const options = { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric',
+        weekday: 'long'
+      };
+      const dateString = now.toLocaleDateString('ru-RU', options);
+      document.getElementById('currentDate').textContent = dateString;
+    }
+
+    // Анимация прогресс-баров
+    function animateProgress() {
+      setTimeout(() => {
+        document.querySelectorAll('.progress-fill').forEach(bar => {
+          bar.style.width = bar.getAttribute('data-width');
         });
-    </script>
+      }, 300);
+    }
+
+    // ==================== RSA Шифрование ====================
+    const e = 3;
+    const d = 3;
+    const n = 15;
+
+    function modExp(base, exp, mod) {
+      let result = 1;
+      base = base % mod;
+      while (exp > 0) {
+        if (exp % 2 === 1) {
+          result = (result * base) % mod;
+        }
+        exp = Math.floor(exp / 2);
+        base = (base * base) % mod;
+      }
+      return result;
+    }
+
+    function encryptRSA() {
+      const input = document.getElementById('rsaInput').value.trim();
+      if (input === '') {
+        document.getElementById('rsaOutput').innerText = 'Ошибка: введите сообщение m.';
+        return;
+      }
+      const m = Number(input);
+      if (!Number.isInteger(m) || m < 0) {
+        document.getElementById('rsaOutput').innerText = 'Ошибка: m должно быть целым неотрицательным числом.';
+        return;
+      }
+      if (m >= n) {
+        document.getElementById('rsaOutput').innerText = 'Ошибка: m должно быть меньше n (m < 15).';
+        return;
+      }
+      const C = modExp(m, e, n);
+      document.getElementById('rsaOutput').innerText = 
+        'Шифрование:\n' +
+        'C = m^e mod n = ' + m + '^' + e + ' mod ' + n + ' = ' + C;
+    }
+
+    function decryptRSA() {
+      const input = document.getElementById('rsaInput').value.trim();
+      if (input === '') {
+        document.getElementById('rsaOutput').innerText = 'Ошибка: введите шифротекст C.';
+        return;
+      }
+      const C = Number(input);
+      if (!Number.isInteger(C) || C < 0) {
+        document.getElementById('rsaOutput').innerText = 'Ошибка: C должно быть целым неотрицательным числом.';
+        return;
+      }
+      if (C >= n) {
+        document.getElementById('rsaOutput').innerText = 'Ошибка: C должно быть меньше n (C < 15).';
+        return;
+      }
+      const m = modExp(C, d, n);
+      document.getElementById('rsaOutput').innerText = 
+        'Расшифровка:\n' +
+        'm = C^d mod n = ' + C + '^' + d + ' mod ' + n + ' = ' + m;
+    }
+
+    // Инициализация при загрузке страницы
+    document.addEventListener('DOMContentLoaded', () => {
+      setDate();
+      animateProgress();
+    });
+  </script>
 </body>
 </html>
 
