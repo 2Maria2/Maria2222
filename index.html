@@ -260,6 +260,61 @@
       margin-top: 15px;
     }
 
+    /* Стили для лога чатбота */
+    .chat-log-container {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 1.5rem 0;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    .chat-entry {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px dashed #e5e7eb;
+    }
+
+    .chat-entry:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .chat-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .chat-label.user { color: #2563eb; }
+    .chat-label.system { color: #7c3aed; }
+    .chat-label.bot { color: #059669; }
+
+    .chat-content {
+      font-family: 'Courier New', monospace;
+      background: #f3f4f6;
+      padding: 10px;
+      border-radius: 6px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .similarity-badge {
+      display: inline-block;
+      background: #e0e7ff;
+      color: #4338ca;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+
     /* Общие стили страницы */
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -306,6 +361,49 @@
 <body>
   <div class="container">
     <blockquote class="q">Путешествие в тысячу миль начинается с одного шага (Лао Цзы)</blockquote>
+
+    <!-- НОВАЯ СЕКЦИЯ С ДАТОЙ И ЧАТБОТОМ -->
+    <h2 id="todayDate">Сегодня</h2>
+    
+    <div class="chat-log-container">
+      <h3 style="margin-top: 0; color: #1a1a2e;">🤖 Лог работы бота поддержки (FAQ)</h3>
+      
+      <!-- Запись 1 -->
+      <div class="chat-entry">
+        <span class="chat-label user">👤 Вопрос пользователя:</span>
+        <div class="chat-content">Сколько ждать мой заказ?</div>
+        
+        <div style="margin: 10px 0;"></div>
+        
+        <span class="chat-label system">🔍 Найден FAQ-вопрос:</span>
+        <div class="chat-content">
+          Как быстро доставляется заказ? <span class="similarity-badge">sim=0.706</span>
+        </div>
+        
+        <div style="margin: 10px 0;"></div>
+        
+        <span class="chat-label bot">🤖 Ответ бот-FAQ:</span>
+        <div class="chat-content">Наш стандартный срок доставки — 3–5 рабочих дней.</div>
+      </div>
+
+      <!-- Запись 2 -->
+      <div class="chat-entry">
+        <span class="chat-label user">👤 Вопрос пользователя:</span>
+        <div class="chat-content">Как оплатить заказ?</div>
+        
+        <div style="margin: 10px 0;"></div>
+        
+        <span class="chat-label system">🔍 Найден FAQ-вопрос:</span>
+        <div class="chat-content">
+          Какие способы оплаты доступны? <span class="similarity-badge">sim=0.852</span>
+        </div>
+        
+        <div style="margin: 10px 0;"></div>
+        
+        <span class="chat-label bot">🤖 Ответ бот-FAQ:</span>
+        <div class="chat-content">Мы принимаем банковские карты, наличные при получении и онлайн-платежи через безопасный шлюз.</div>
+      </div>
+    </div>
 
     <h2>19 января, 2026</h2>
     <h3>Решение задач на шифр Цезаря (русский алфавит, 32 буквы)</h3>
@@ -356,12 +454,12 @@
     </p>
     <p>Нажмите, чтобы открыть или скачать презентацию: <a href="СетьВводный.pptx">Презентация в формате .pptx</a></p>
     <p>Нажмите, чтобы открыть или скачать index.html: <a href="index.html">Файл проверки работы с кириллицей .html</a></p>
-    <p>Иконки: <a href="https://www.flaticon.com/ru/free-icons/" title="украшение иконки">Украшение иконки от Victoruler - Flaticon</a></p>
+    <p>Иконки: <a href="https://www.flaticon.com/ru/free-icons/  " title="украшение иконки">Украшение иконки от Victoruler - Flaticon</a></p>
 
     <hr style="margin: 2rem 0;" />
 
     <h2>Структура моего домена</h2>
-    <p>Мой сайт: <a href="https://2maria2.github.io/Maria2222/">https://2maria2.github.io/Maria2222/</a></p>
+    <p>Мой сайт: <a href="https://2maria2.github.io/Maria2222/  ">https://2maria2.github.io/Maria2222/  </a></p>
     <p>Из каких имён и на каких уровнях состоит домен?</p>
     <p>Полный URL содержит не только домен, но и протокол + путь. Вот разбор по уровням:</p>
 
@@ -397,7 +495,7 @@
 
       <div class="card-body">
         <div class="image-wrapper">
-          <img src="https://image.qwenlm.ai/public_source/7d12d8bc-a4a6-485d-86f5-edfafb43bf3d/1c4da2259-3420-417e-bddb-8ef46fdb560d.png" alt="Классифицированное изображение">
+          <img src="https://image.qwenlm.ai/public_source/7d12d8bc-a4a6-485d-86f5-edfafb43bf3d/1c4da2259-3420-417e-bddb-8ef46fdb560d.png  " alt="Классифицированное изображение">
           <span class="image-label">📷 Изображение</span>
         </div>
 
@@ -484,7 +582,7 @@
   </div>
 
   <script>
-    // ==================== Дата для карточки предсказаний ====================
+    // ==================== Дата для карточки предсказаний и заголовка ====================
     function setDate() {
       const now = new Date();
       const options = { 
@@ -494,7 +592,18 @@
         weekday: 'long'
       };
       const dateString = now.toLocaleDateString('ru-RU', options);
-      document.getElementById('currentDate').textContent = dateString;
+      
+      // Установка даты в карточку предсказаний
+      const cardDateElement = document.getElementById('currentDate');
+      if(cardDateElement) {
+        cardDateElement.textContent = dateString;
+      }
+
+      // Установка даты в новый заголовок "Сегодня"
+      const todayHeader = document.getElementById('todayDate');
+      if(todayHeader) {
+        todayHeader.textContent = dateString;
+      }
     }
 
     // Анимация прогресс-баров
@@ -574,5 +683,7 @@
   </script>
 </body>
 </html>
+
+
 
 
