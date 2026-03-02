@@ -4,52 +4,234 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Мой блог — Maria2222</title>
-  <link type="text/css" rel="stylesheet" href="style.css" />
+  <title>Мой блог — Maria2222 ☁️</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* Встроенные стили для задач по шифру */
-    .task { margin-bottom: 1.2rem; }
-    .answer {
-      background: #f8f9fa;
-      padding: 0.5rem 1rem;
-      border-left: 4px solid #3498db;
-      margin: 0.5rem 0;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 1rem 0;
-    }
-    th, td {
-      border: 1px solid #ccc;
-      padding: 8px;
-      text-align: left;
-    }
-    th {
-      background-color: #ecf0f1;
+    :root {
+      --cinnamoroll-blue: #a2d2ff;
+      --cinnamoroll-dark-blue: #8ecae6;
+      --cinnamoroll-pink: #ffc8dd;
+      --cinnamoroll-light-pink: #ffe5ec;
+      --cinnamoroll-white: #ffffff;
+      --text-main: #5d576b;
+      --text-light: #8e8699;
+      --shadow-soft: 0 10px 30px rgba(162, 210, 255, 0.3);
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-sm: 8px;
     }
 
-    /* Стили для карточки предсказаний */
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(180deg, #e0f2fe 0%, #f0f9ff 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 40px;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      border: 2px solid white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Header Image Style */
+    .header-banner {
+      width: 100%;
+      height: 200px;
+      background-image: url('https://image.qwenlm.ai/public_source/dca1c88b-507c-4fea-93f7-9cb8990d498f/195b782bf-bc35-4085-8fff-7961a8a8c764.png');
+      background-size: cover;
+      background-position: center;
+      border-radius: var(--radius-md);
+      margin-bottom: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    h1, h2, h3 {
+      color: var(--cinnamoroll-dark-blue);
+      font-weight: 700;
+    }
+
+    h2 {
+      border-bottom: 3px dashed var(--cinnamoroll-pink);
+      padding-bottom: 10px;
+      margin-top: 40px;
+      display: inline-block;
+    }
+
+    h3 {
+      color: var(--text-main);
+      font-size: 1.2rem;
+    }
+
+    .q {
+      font-style: italic;
+      background: var(--cinnamoroll-light-pink);
+      border-left: 5px solid var(--cinnamoroll-pink);
+      padding: 15px 20px;
+      margin: 20px 0;
+      color: var(--text-main);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    }
+
+    a {
+      color: var(--cinnamoroll-dark-blue);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    a:hover {
+      color: var(--cinnamoroll-pink);
+      text-decoration: underline;
+    }
+
+    /* Chat Log Styles */
+    .chat-log-container {
+      background: #fff;
+      border: 2px solid var(--cinnamoroll-blue);
+      border-radius: var(--radius-lg);
+      padding: 25px;
+      margin: 1.5rem 0;
+      box-shadow: 0 4px 15px rgba(162, 210, 255, 0.15);
+    }
+
+    .chat-entry {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 2px dashed #eef2ff;
+    }
+
+    .chat-entry:last-child {
+      border-bottom: none;
+    }
+
+    .chat-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    .chat-label.user { background: #e0f2fe; color: #0284c7; }
+    .chat-label.system { background: #f3e8ff; color: #9333ea; }
+    .chat-label.bot { background: #dcfce7; color: #16a34a; }
+
+    .chat-content {
+      font-family: 'Quicksand', sans-serif;
+      background: #f8fafc;
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      font-size: 15px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .similarity-badge {
+      display: inline-block;
+      background: #e0e7ff;
+      color: #4338ca;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-left: 8px;
+    }
+
+    /* Task & Answer Styles */
+    .task {
+      margin-bottom: 1.5rem;
+      background: #fff;
+      padding: 15px;
+      border-radius: var(--radius-md);
+      border: 1px solid #f1f5f9;
+    }
+
+    .answer {
+      background: #f0f9ff;
+      padding: 10px 15px;
+      border-left: 4px solid var(--cinnamoroll-blue);
+      margin: 10px 0;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-weight: 600;
+      color: #0369a1;
+    }
+
+    code {
+      background: #fff1f2;
+      color: #be123c;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9em;
+    }
+
+    /* Table Styles */
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 1.5rem 0;
+      overflow: hidden;
+      border-radius: var(--radius-md);
+      border: 1px solid #e2e8f0;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    th {
+      background-color: var(--cinnamoroll-blue);
+      color: white;
+      font-weight: 600;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f8fafc;
+    }
+
+    /* Prediction Card - Cinnamoroll Style */
     .prediction-card {
       background: white;
-      border-radius: 20px;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 20px 40px -10px rgba(162, 210, 255, 0.4);
       overflow: hidden;
       max-width: 500px;
       width: 100%;
       margin: 2rem auto;
+      border: 1px solid #e0f2fe;
     }
 
     .prediction-card .card-header {
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-      color: white;
+      background: linear-gradient(135deg, #bae6fd 0%, #e0f2fe 100%);
+      color: #0369a1;
       padding: 20px 24px;
     }
 
     .prediction-card .date {
       font-size: 14px;
-      font-weight: 500;
-      opacity: 0.9;
+      font-weight: 700;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -61,10 +243,11 @@
 
     .prediction-card .image-wrapper {
       position: relative;
-      border-radius: 12px;
+      border-radius: var(--radius-md);
       overflow: hidden;
       margin-bottom: 24px;
-      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1);
+      border: 4px solid white;
     }
 
     .prediction-card .image-wrapper img {
@@ -78,19 +261,21 @@
       position: absolute;
       top: 12px;
       right: 12px;
-      background: rgba(0, 0, 0, 0.75);
-      color: white;
+      background: rgba(255, 255, 255, 0.9);
+      color: #0369a1;
       padding: 6px 14px;
       border-radius: 20px;
       font-size: 12px;
-      font-weight: 600;
+      font-weight: 700;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
     .prediction-card .predictions-title {
       font-size: 18px;
       font-weight: 700;
-      color: #1a1a2e;
+      color: #0369a1;
       margin-bottom: 16px;
+      text-align: center;
     }
 
     .prediction-card .predictions-list {
@@ -100,25 +285,30 @@
     }
 
     .prediction-card .prediction-item {
-      background: #f8f9fa;
-      border-radius: 12px;
+      background: #f8fafc;
+      border-radius: var(--radius-md);
       padding: 16px;
-      border-left: 4px solid #667eea;
+      border-left: 5px solid #cbd5e1;
+      transition: transform 0.2s;
+    }
+    
+    .prediction-card .prediction-item:hover {
+      transform: translateY(-2px);
     }
 
     .prediction-card .prediction-item.top-1 {
-      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-      border-left-color: #f59e0b;
+      background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+      border-left-color: #f97316;
     }
 
     .prediction-card .prediction-item.top-2 {
-      background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);
-      border-left-color: #6b7280;
+      background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+      border-left-color: #64748b;
     }
 
     .prediction-card .prediction-item.top-3 {
-      background: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%);
-      border-left-color: #ea580c;
+      background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%);
+      border-left-color: #f43f5e;
     }
 
     .prediction-card .prediction-row {
@@ -129,8 +319,8 @@
     }
 
     .prediction-card .prediction-name {
-      font-weight: 600;
-      color: #1a1a2e;
+      font-weight: 700;
+      color: #334155;
       font-size: 15px;
       text-transform: capitalize;
       display: flex;
@@ -148,21 +338,22 @@
       font-weight: 700;
       font-size: 12px;
       color: white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
-    .prediction-card .rank-1 { background: #f59e0b; }
-    .prediction-card .rank-2 { background: #6b7280; }
-    .prediction-card .rank-3 { background: #ea580c; }
+    .prediction-card .rank-1 { background: #f97316; }
+    .prediction-card .rank-2 { background: #64748b; }
+    .prediction-card .rank-3 { background: #f43f5e; }
 
     .prediction-card .prediction-percent {
       font-weight: 700;
       font-size: 16px;
-      color: #667eea;
+      color: #0369a1;
     }
 
     .prediction-card .progress-bar {
       height: 8px;
-      background: #e5e7eb;
+      background: #e2e8f0;
       border-radius: 4px;
       overflow: hidden;
     }
@@ -170,53 +361,50 @@
     .prediction-card .progress-fill {
       height: 100%;
       border-radius: 4px;
-      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(90deg, #60a5fa 0%, #a78bfa 100%);
       transition: width 1s ease-out;
     }
 
     .prediction-card .top-1 .progress-fill {
-      background: linear-gradient(90deg, #f59e0b 0%, #d97706 100%);
+      background: linear-gradient(90deg, #fbbf24 0%, #f59e0b 100%);
     }
 
     .prediction-card .top-2 .progress-fill {
-      background: linear-gradient(90deg, #6b7280 0%, #4b5563 100%);
+      background: linear-gradient(90deg, #94a3b8 0%, #64748b 100%);
     }
 
     .prediction-card .top-3 .progress-fill {
-      background: linear-gradient(90deg, #ea580c 0%, #c2410c 100%);
+      background: linear-gradient(90deg, #fb7185 0%, #e11d48 100%);
     }
 
     .prediction-card .card-footer {
       padding: 16px 24px 20px;
-      border-top: 1px solid #e5e7eb;
+      border-top: 1px solid #f1f5f9;
       margin-top: 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       font-size: 12px;
-      color: #6b7280;
+      color: #64748b;
+      background: #f8fafc;
     }
 
     .prediction-card .model-badge {
-      background: #f3f4f6;
+      background: white;
       padding: 4px 12px;
       border-radius: 12px;
-      font-weight: 500;
+      font-weight: 700;
+      border: 1px solid #e2e8f0;
+      color: #475569;
     }
 
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .prediction-card .prediction-item {
-      animation: fadeIn 0.4s ease-out forwards;
+      animation: fadeIn 0.5s ease-out forwards;
       opacity: 0;
     }
 
@@ -224,149 +412,102 @@
     .prediction-card .prediction-item:nth-child(2) { animation-delay: 0.2s; }
     .prediction-card .prediction-item:nth-child(3) { animation-delay: 0.3s; }
 
-    /* Стили для RSA секции */
+    /* RSA Section */
     .rsa-section {
-      background: #f8f9fa;
-      padding: 20px;
-      border-radius: 12px;
+      background: #f0f9ff;
+      padding: 25px;
+      border-radius: var(--radius-lg);
       margin: 2rem 0;
+      border: 2px dashed var(--cinnamoroll-blue);
     }
+
     .rsa-section input {
-      padding: 8px 12px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 14px;
+      padding: 10px 15px;
+      border: 2px solid #bae6fd;
+      border-radius: var(--radius-sm);
+      font-size: 16px;
       margin: 10px 0;
+      width: 100%;
+      box-sizing: border-box;
+      font-family: 'Quicksand', sans-serif;
+      outline: none;
+      transition: border-color 0.3s;
     }
+
+    .rsa-section input:focus {
+      border-color: var(--cinnamoroll-pink);
+    }
+
     .rsa-section button {
-      padding: 10px 20px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #bae6fd 0%, #a5b4fc 100%);
       color: white;
       border: none;
-      border-radius: 8px;
+      border-radius: var(--radius-sm);
       cursor: pointer;
-      font-size: 14px;
+      font-size: 16px;
+      font-weight: 700;
       margin-right: 10px;
+      margin-top: 10px;
+      font-family: 'Quicksand', sans-serif;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
     }
+
     .rsa-section button:hover {
-      opacity: 0.9;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+      opacity: 0.95;
     }
+
     .rsa-section pre {
-      background: #1a1a2e;
-      color: #fff;
+      background: #1e293b;
+      color: #bae6fd;
       padding: 15px;
-      border-radius: 8px;
+      border-radius: var(--radius-md);
       overflow-x: auto;
       margin-top: 15px;
-    }
-
-    /* Стили для лога чатбота */
-    .chat-log-container {
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
-      border-radius: 12px;
-      padding: 20px;
-      margin: 1.5rem 0;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    }
-
-    .chat-entry {
-      margin-bottom: 1.5rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 1px dashed #e5e7eb;
-    }
-
-    .chat-entry:last-child {
-      margin-bottom: 0;
-      padding-bottom: 0;
-      border-bottom: none;
-    }
-
-    .chat-label {
-      font-size: 0.85rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.5rem;
-      display: block;
-    }
-
-    .chat-label.user { color: #2563eb; }
-    .chat-label.system { color: #7c3aed; }
-    .chat-label.bot { color: #059669; }
-
-    .chat-content {
       font-family: 'Courier New', monospace;
-      background: #f3f4f6;
-      padding: 10px;
-      border-radius: 6px;
       font-size: 14px;
-      line-height: 1.5;
+      border: 1px solid #334155;
     }
 
-    .similarity-badge {
-      display: inline-block;
-      background: #e0e7ff;
-      color: #4338ca;
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      margin-left: 8px;
+    footer {
+      text-align: center;
+      color: var(--text-light);
+      font-size: 14px;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid #e2e8f0;
     }
 
-    /* Общие стили страницы */
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      min-height: 100vh;
-      padding: 20px;
+    /* Decorative Clouds */
+    .cloud-decor {
+      position: absolute;
+      opacity: 0.1;
+      z-index: 0;
+      pointer-events: none;
     }
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      background: white;
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-    }
-    .q {
-      font-style: italic;
-      border-left: 4px solid #667eea;
-      padding-left: 15px;
-      margin: 20px 0;
-      color: #555;
-    }
-    h2 {
-      color: #1a1a2e;
-      border-bottom: 2px solid #667eea;
-      padding-bottom: 10px;
-      margin-top: 30px;
-    }
-    a {
-      color: #667eea;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    code {
-      background: #f3f4f6;
-      padding: 2px 6px;
-      border-radius: 4px;
-      font-family: 'Courier New', monospace;
-    }
+    .cloud-1 { top: -20px; right: -20px; width: 150px; }
+    .cloud-2 { bottom: 20px; left: -30px; width: 120px; }
+
   </style>
 </head>
 <body>
   <div class="container">
-    <blockquote class="q">Путешествие в тысячу миль начинается с одного шага (Лао Цзы)</blockquote>
+    <!-- Decorative Clouds SVG -->
+    <svg class="cloud-decor cloud-1" viewBox="0 0 24 24" fill="currentColor"><path d="M18.42 9.22a6.94 6.94 0 0 0-1.35-3.87A7 7 0 0 0 5.53 7.5 5.5 5.5 0 0 0 6 18h12a5 5 0 0 0 .42-9.78z"/></svg>
+    <svg class="cloud-decor cloud-2" viewBox="0 0 24 24" fill="currentColor"><path d="M18.42 9.22a6.94 6.94 0 0 0-1.35-3.87A7 7 0 0 0 5.53 7.5 5.5 5.5 0 0 0 6 18h12a5 5 0 0 0 .42-9.78z"/></svg>
+
+    <div class="header-banner"></div>
+
+    <blockquote class="q">✨ Путешествие в тысячу миль начинается с одного шага (Лао Цзы)</blockquote>
 
     <!-- НОВАЯ СЕКЦИЯ С ДАТОЙ И ЧАТБОТОМ -->
     <h2 id="todayDate">Сегодня</h2>
     
     <div class="chat-log-container">
-      <h3 style="margin-top: 0; color: #1a1a2e;">🤖 Лог работы бота поддержки (FAQ)</h3>
+      <h3 style="margin-top: 0; color: #0369a1;">🤖 Лог работы бота поддержки (FAQ)</h3>
       
       <!-- Запись 1 -->
       <div class="chat-entry">
@@ -432,11 +573,11 @@
     <p><em>Алфавит: А–Я без «Ё» (32 буквы). Нумерация с 0.</em></p>
 
     <h2>14 января, 2026</h2>
-    <p><a href="mailto:vituginamaria0@gmail.com">Напишите мне</a></p>
+    <p><a href="mailto:vituginamaria0@gmail.com">✉️ Напишите мне</a></p>
 
     <h2>20 декабря, 2025</h2>
-    <p>Поздравляю с наступающим рождеством 2026! <a href="Koladka.odt" title="колядка" download>Колядка 20.12.2025</a></p>
-    <p><a href="newTree.mp4" title="Новогодняя ёлка" download="Новогодняя_елка.mp4">Скачать видео с новогодней ёлкой (MP4)</a></p>
+    <p>Поздравляю с наступающим рождеством 2026! <a href="Koladka.odt" title="колядка" download>🎄 Колядка 20.12.2025</a></p>
+    <p><a href="newTree.mp4" title="Новогодняя ёлка" download="Новогодняя_елка.mp4">📹 Скачать видео с новогодней ёлкой (MP4)</a></p>
 
     <h2>01.12.2025</h2>
     <img src="Icons/free-icon-stars-2300158.png" alt="Новый год" style="height: 48px; vertical-align: middle;" />
@@ -446,20 +587,20 @@
     <p>Я сделала Новогодние кроссворды для сайта <a href="http://dimaderg01-jpg.github.io/123/" title="Блог моего друга">Сайт моего друга</a>.</p>
 
     <h2>1 сентября, 2025</h2>
-    <blockquote>Путешествие в тысячу миль начинается с одного шага (Лао Цзы)</blockquote>
+    <blockquote class="q">Путешествие в тысячу миль начинается с одного шага (Лао Цзы)</blockquote>
     <p>Оставляю в прошлом скучную неинтересную локальную файловую систему ради Всемирной паутины.</p>
     <p>
-      <a href="krossvordRU.html">Русский кроссворд</a> |
-      <a href="krossvordEN.html">Английский кроссворд</a>
+      <a href="krossvordRU.html">🇷🇺 Русский кроссворд</a> |
+      <a href="krossvordEN.html">🇬🇧 Английский кроссворд</a>
     </p>
-    <p>Нажмите, чтобы открыть или скачать презентацию: <a href="СетьВводный.pptx">Презентация в формате .pptx</a></p>
-    <p>Нажмите, чтобы открыть или скачать index.html: <a href="index.html">Файл проверки работы с кириллицей .html</a></p>
-    <p>Иконки: <a href="https://www.flaticon.com/ru/free-icons/  " title="украшение иконки">Украшение иконки от Victoruler - Flaticon</a></p>
+    <p>Нажмите, чтобы открыть или скачать презентацию: <a href="СетьВводный.pptx">📊 Презентация в формате .pptx</a></p>
+    <p>Нажмите, чтобы открыть или скачать index.html: <a href="index.html">📄 Файл проверки работы с кириллицей .html</a></p>
+    <p>Иконки: <a href="https://www.flaticon.com/ru/free-icons/" title="украшение иконки">Украшение иконки от Victoruler - Flaticon</a></p>
 
-    <hr style="margin: 2rem 0;" />
+    <hr style="margin: 2rem 0; border: 0; border-top: 2px dashed #e2e8f0;" />
 
     <h2>Структура моего домена</h2>
-    <p>Мой сайт: <a href="https://2maria2.github.io/Maria2222/  ">https://2maria2.github.io/Maria2222/  </a></p>
+    <p>Мой сайт: <a href="https://2maria2.github.io/Maria2222/">🌐 https://2maria2.github.io/Maria2222/</a></p>
     <p>Из каких имён и на каких уровнях состоит домен?</p>
     <p>Полный URL содержит не только домен, но и протокол + путь. Вот разбор по уровням:</p>
 
@@ -495,7 +636,7 @@
 
       <div class="card-body">
         <div class="image-wrapper">
-          <img src="https://image.qwenlm.ai/public_source/7d12d8bc-a4a6-485d-86f5-edfafb43bf3d/1c4da2259-3420-417e-bddb-8ef46fdb560d.png  " alt="Классифицированное изображение">
+          <img src="https://image.qwenlm.ai/public_source/7d12d8bc-a4a6-485d-86f5-edfafb43bf3d/1c4da2259-3420-417e-bddb-8ef46fdb560d.png" alt="Классифицированное изображение">
           <span class="image-label">📷 Изображение</span>
         </div>
 
@@ -549,35 +690,35 @@
       </div>
     </div>
 
-    <p style="text-align: center; color: #666; font-style: italic;">
+    <p style="text-align: center; color: #64748b; font-style: italic; font-size: 0.9rem;">
       💡 Примечание: На изображении <strong>Какапо</strong> (совиный попугай), которого нет в списке классов ImageNet-1000. 
       Это редкая нелетающая птица из Новой Зеландии, поэтому модель не смогла её корректно распознать.
     </p>
 
     <!-- RSA Шифрование -->
-    <h2>RSA Шифрование (учебный пример)</h2>
+    <h2>🔐 RSA Шифрование (учебный пример)</h2>
     
     <div class="rsa-section">
-      <p style="font-family: 'Pudelinka', cursive;">Пусть сообщение m = 2 означает «анализ готов».</p>
+      <p style="font-family: 'Quicksand', sans-serif; margin-top: 0;">Пусть сообщение m = 2 означает «анализ готов».</p>
       <p>Условие: m &lt; n → 2 &lt; 15 → ✅</p>
       <p>Открытый ключ: (e = 3, n = 15)<br>
          Закрытый ключ: d = 3</p>
 
-      <label for="rsaInput">Введите m (для шифрования) или C (для расшифровки):</label><br>
+      <label for="rsaInput" style="font-weight: 700; color: #0369a1;">Введите m (для шифрования) или C (для расшифровки):</label><br>
       <input type="text" id="rsaInput" value="2"><br><br>
 
-      <button onclick="encryptRSA()">Зашифровать</button>
-      <button onclick="decryptRSA()">Расшифровать</button>
+      <button onclick="encryptRSA()">Зашифровать 🔒</button>
+      <button onclick="decryptRSA()">Расшифровать 🔓</button>
 
       <pre id="rsaOutput"></pre>
 
-      <p style="margin-top: 15px; font-size: 13px; color: #666;">В реальности n — это число из 600+ десятичных цифр.</p>
+      <p style="margin-top: 15px; font-size: 13px; color: #64748b;">В реальности n — это число из 600+ десятичных цифр.</p>
     </div>
 
-    <hr style="margin: 2rem 0;" />
+    <hr style="margin: 2rem 0; border: 0; border-top: 2px dashed #e2e8f0;" />
 
-    <footer style="text-align: center; color: #666; font-size: 14px;">
-      <p>&copy; 2025-2026 Maria2222. Все права защищены.</p>
+    <footer>
+      <p>&copy; 2025-2026 Maria2222. Все права защищены. ☁️💙</p>
     </footer>
   </div>
 
@@ -683,6 +824,8 @@
   </script>
 </body>
 </html>
+
+
 
 
 
