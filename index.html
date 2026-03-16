@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -491,6 +490,63 @@
     .cloud-1 { top: -20px; right: -20px; width: 150px; }
     .cloud-2 { bottom: 20px; left: -30px; width: 120px; }
 
+    /* Regression Section Styles */
+    .regression-section {
+      background: white;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      padding: 30px;
+      margin: 2rem 0;
+      border: 1px solid #e0f2fe;
+    }
+
+    .regression-highlight {
+      background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%);
+      border-left: 5px solid var(--cinnamoroll-blue);
+      padding: 20px;
+      border-radius: var(--radius-md);
+      margin: 20px 0;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .regression-highlight .score-box {
+      background: white;
+      padding: 15px 25px;
+      border-radius: 50%;
+      box-shadow: 0 4px 10px rgba(162, 210, 255, 0.3);
+      text-align: center;
+      min-width: 80px;
+    }
+
+    .regression-highlight .score-value {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--cinnamoroll-dark-blue);
+      display: block;
+    }
+
+    .regression-highlight .score-label {
+      font-size: 12px;
+      color: var(--text-light);
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .regression-image-container {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .regression-image-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: var(--radius-md);
+      box-shadow: 0 8px 20px rgba(162, 210, 255, 0.2);
+      border: 4px solid white;
+    }
+
   </style>
 </head>
 <body>
@@ -695,6 +751,51 @@
       Это редкая нелетающая птица из Новой Зеландии, поэтому модель не смогла её корректно распознать.
     </p>
 
+    <!-- НОВАЯ СЕКЦИЯ: Регрессионный анализ -->
+    <h2 id="regressionDate">Сегодня</h2>
+    <h3>📊 Прогноз успеваемости студентов (Linear Regression)</h3>
+    
+    <div class="regression-section">
+      <div class="regression-image-container">
+        <img src="https://image.qwenlm.ai/public_source/9ddd414a-d114-40b8-bbf7-52ee4acf8744/1e8eef7ea-c840-4607-a3c4-dcf29bef3de3.png" alt="Cinnamoroll Data Science">
+      </div>
+
+      <p>Используя библиотеку <code>pandas</code> и модель линейной регрессии, мы проанализировали зависимость баллов за экзамен от часов подготовки.</p>
+
+      <div class="regression-highlight">
+        <div>
+          <strong>Одиночный прогноз:</strong><br>
+          Студент занимался <code>5</code> часов.
+        </div>
+        <div class="score-box">
+          <span class="score-value">68.92</span>
+          <span class="score-label">Баллов</span>
+        </div>
+      </div>
+
+      <p><strong>Групповой прогноз для нескольких студентов:</strong></p>
+      
+      <table>
+        <thead>
+          <tr>
+            <th> Часы подготовки</th>
+            <th>📈 Прогноз баллов</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>23.45</td></tr>
+          <tr><td>3</td><td>45.67</td></tr>
+          <tr><td>5</td><td>68.92</td></tr>
+          <tr><td>7</td><td>89.10</td></tr>
+          <tr><td>10</td><td>98.50</td></tr>
+        </tbody>
+      </table>
+      
+      <p style="font-size: 0.9rem; color: #64748b; margin-top: 15px;">
+        <em>💡 Вывод: Чем больше времени уделяется подготовке, тем выше ожидаемый результат, однако после 10 часов рост замедляется (эффект насыщения).</em>
+      </p>
+    </div>
+
     <!-- RSA Шифрование -->
     <h2>🔐 RSA Шифрование (учебный пример)</h2>
     
@@ -744,6 +845,12 @@
       const todayHeader = document.getElementById('todayDate');
       if(todayHeader) {
         todayHeader.textContent = dateString;
+      }
+
+      // Установка даты в заголовок регрессии
+      const regressionHeader = document.getElementById('regressionDate');
+      if(regressionHeader) {
+        regressionHeader.textContent = dateString;
       }
     }
 
@@ -824,9 +931,4 @@
   </script>
 </body>
 </html>
-
-
-
-
-
 
