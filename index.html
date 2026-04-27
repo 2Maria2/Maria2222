@@ -45,7 +45,6 @@
       overflow: hidden;
     }
 
-    /* Header Image Style */
     .header-banner {
       width: 100%;
       height: 200px;
@@ -96,7 +95,6 @@
       text-decoration: underline;
     }
 
-    /* Chat Log Styles */
     .chat-log-container {
       background: #fff;
       border: 2px solid var(--cinnamoroll-blue);
@@ -151,7 +149,6 @@
       margin-left: 8px;
     }
 
-    /* Task & Answer Styles */
     .task {
       margin-bottom: 1.5rem;
       background: #fff;
@@ -179,7 +176,6 @@
       font-size: 0.9em;
     }
 
-    /* Table Styles */
     table {
       width: 100%;
       border-collapse: separate;
@@ -210,7 +206,6 @@
       background-color: #f8fafc;
     }
 
-    /* Prediction Card - Cinnamoroll Style */
     .prediction-card {
       background: white;
       border-radius: var(--radius-lg);
@@ -411,7 +406,6 @@
     .prediction-card .prediction-item:nth-child(2) { animation-delay: 0.2s; }
     .prediction-card .prediction-item:nth-child(3) { animation-delay: 0.3s; }
 
-    /* RSA Section */
     .rsa-section {
       background: #f0f9ff;
       padding: 25px;
@@ -480,7 +474,6 @@
       border-top: 1px solid #e2e8f0;
     }
 
-    /* Decorative Clouds */
     .cloud-decor {
       position: absolute;
       opacity: 0.1;
@@ -490,7 +483,6 @@
     .cloud-1 { top: -20px; right: -20px; width: 150px; }
     .cloud-2 { bottom: 20px; left: -30px; width: 120px; }
 
-    /* Regression Section Styles */
     .regression-section {
       background: white;
       border-radius: var(--radius-lg);
@@ -547,11 +539,555 @@
       border: 4px solid white;
     }
 
+    /* ===== NEURAL NETWORK SECTION STYLES ===== */
+    .neural-section {
+      margin: 2rem 0;
+    }
+
+    .nn-main-card {
+      background: linear-gradient(135deg, #f0f9ff 0%, #fef3c7 50%, #fce7f3 100%);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      margin: 1.5rem 0;
+      border: 2px solid #e0f2fe;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .nn-main-card h3 {
+      color: #0369a1;
+      font-size: 1.3rem;
+      margin-top: 0;
+      margin-bottom: 15px;
+    }
+
+    /* MSE Error Cards */
+    .mse-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    .mse-card {
+      background: white;
+      border-radius: var(--radius-md);
+      padding: 24px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(162, 210, 255, 0.15);
+      border: 1px solid #e0f2fe;
+      transition: transform 0.2s;
+    }
+
+    .mse-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .mse-card .mse-icon {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .mse-card .mse-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-light);
+      margin-bottom: 8px;
+    }
+
+    .mse-card .mse-value {
+      font-size: 1.1rem;
+      font-weight: 800;
+      font-family: 'Courier New', monospace;
+      color: #0369a1;
+      word-break: break-all;
+    }
+
+    .mse-card.train {
+      border-top: 4px solid #22c55e;
+    }
+
+    .mse-card.test {
+      border-top: 4px solid #f59e0b;
+    }
+
+    .mse-card .mse-status {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .mse-card.train .mse-status {
+      background: #dcfce7;
+      color: #16a34a;
+    }
+
+    .mse-card.test .mse-status {
+      background: #fef3c7;
+      color: #d97706;
+    }
+
+    /* Prediction Examples */
+    .prediction-examples {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 25px;
+      margin: 20px 0;
+      box-shadow: 0 4px 15px rgba(162, 210, 255, 0.15);
+      border: 1px solid #e0f2fe;
+    }
+
+    .prediction-examples h3 {
+      color: #0369a1;
+      margin-top: 0;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .prediction-example-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      margin-bottom: 10px;
+      background: #f8fafc;
+      border-radius: var(--radius-sm);
+      border-left: 4px solid #e2e8f0;
+      transition: all 0.2s;
+    }
+
+    .prediction-example-row:hover {
+      background: #f0f9ff;
+      border-left-color: var(--cinnamoroll-blue);
+    }
+
+    .prediction-example-row .example-label {
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--text-light);
+      min-width: 60px;
+    }
+
+    .prediction-example-row .fact-value {
+      font-weight: 700;
+      color: #dc2626;
+      font-size: 1rem;
+      min-width: 60px;
+    }
+
+    .prediction-example-row .arrow-icon {
+      color: #94a3b8;
+      font-size: 1.2rem;
+    }
+
+    .prediction-example-row .pred-value {
+      font-weight: 700;
+      color: #2563eb;
+      font-size: 1rem;
+      min-width: 60px;
+    }
+
+    .prediction-example-row .diff-bar {
+      flex: 1;
+      height: 6px;
+      background: #e2e8f0;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-left: 8px;
+    }
+
+    .prediction-example-row .diff-fill {
+      height: 100%;
+      border-radius: 3px;
+      transition: width 1s ease-out;
+    }
+
+    .prediction-example-row .diff-fill.good {
+      background: linear-gradient(90deg, #86efac, #22c55e);
+    }
+
+    .prediction-example-row .diff-fill.medium {
+      background: linear-gradient(90deg, #fde68a, #f59e0b);
+    }
+
+    /* How NN Works Section */
+    .nn-explain-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      margin: 20px 0;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid #e0f2fe;
+    }
+
+    .nn-explain-card h3 {
+      color: #7c3aed;
+      margin-top: 0;
+    }
+
+    .nn-intro {
+      background: linear-gradient(135deg, #ede9fe 0%, #fce7f3 100%);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      margin: 15px 0 25px;
+      border-left: 5px solid #7c3aed;
+      font-size: 1rem;
+    }
+
+    .steps-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .step-card {
+      background: white;
+      border-radius: var(--radius-md);
+      padding: 20px;
+      border: 2px solid #e2e8f0;
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .step-card:hover {
+      border-color: var(--cinnamoroll-blue);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(162, 210, 255, 0.2);
+    }
+
+    .step-card .step-number {
+      position: absolute;
+      top: -14px;
+      left: 16px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #bae6fd 0%, #a5b4fc 100%);
+      color: white;
+      font-weight: 800;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .step-card .step-icon {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    .step-card h4 {
+      margin: 0 0 8px;
+      color: #0369a1;
+      font-size: 1rem;
+    }
+
+    .step-card p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+
+    /* Learning Process */
+    .learning-section {
+      background: linear-gradient(135deg, #f0f9ff 0%, #ecfdf5 100%);
+      border-radius: var(--radius-lg);
+      padding: 25px;
+      margin: 20px 0;
+      border: 2px solid #bae6fd;
+    }
+
+    .learning-section h3 {
+      color: #059669;
+      margin-top: 0;
+    }
+
+    .learning-timeline {
+      position: relative;
+      padding-left: 30px;
+    }
+
+    .learning-timeline::before {
+      content: '';
+      position: absolute;
+      left: 10px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, #bae6fd, #a78bfa, #86efac);
+      border-radius: 2px;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 20px;
+      padding: 15px 20px;
+      background: white;
+      border-radius: var(--radius-md);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -26px;
+      top: 20px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: white;
+      border: 3px solid #bae6fd;
+    }
+
+    .timeline-item:nth-child(1)::before { border-color: #f59e0b; }
+    .timeline-item:nth-child(2)::before { border-color: #ef4444; }
+    .timeline-item:nth-child(3)::before { border-color: #22c55e; }
+
+    .timeline-item p {
+      margin: 0;
+      font-size: 0.95rem;
+    }
+
+    /* Comparison Table */
+    .comparison-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      margin: 20px 0;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid #e0f2fe;
+    }
+
+    .comparison-card h3 {
+      color: #6366f1;
+      margin-top: 0;
+      text-align: center;
+    }
+
+    .comparison-table-wrap {
+      overflow-x: auto;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 20px 0;
+      border-radius: var(--radius-md);
+      border: 2px solid #e2e8f0;
+      overflow: hidden;
+    }
+
+    .comparison-table th {
+      padding: 14px 16px;
+      text-align: left;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .comparison-table td {
+      padding: 14px 16px;
+      vertical-align: top;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .comparison-table thead tr {
+      background: linear-gradient(135deg, #c7d2fe 0%, #bae6fd 100%);
+    }
+
+    .comparison-table thead th {
+      color: #312e81;
+      border-bottom: 2px solid #e0e7ff;
+    }
+
+    .comparison-table tbody tr {
+      transition: background 0.2s;
+    }
+
+    .comparison-table tbody tr:hover {
+      background: #f0f9ff !important;
+    }
+
+    .comparison-table tbody tr.highlight-row {
+      background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 100%);
+    }
+
+    .comparison-table tbody tr.highlight-row td {
+      font-weight: 600;
+    }
+
+    .comparison-table .model-emoji {
+      font-size: 1.5rem;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+
+    .comparison-table .analog-badge {
+      display: inline-block;
+      background: #f3f4f6;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    /* Why NN is better */
+    .nn-better-card {
+      background: linear-gradient(135deg, #fef3c7 0%, #fce7f3 50%, #e0f2fe 100%);
+      border-radius: var(--radius-lg);
+      padding: 25px;
+      margin: 20px 0;
+      border: 2px solid #fde68a;
+    }
+
+    .nn-better-card h3 {
+      color: #d97706;
+      margin-top: 0;
+    }
+
+    .nn-better-card p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .nn-better-card .highlight-text {
+      background: rgba(255,255,255,0.7);
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+
+    /* Architecture Image */
+    .arch-image-wrap {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .arch-image-wrap img {
+      max-width: 100%;
+      height: auto;
+      border-radius: var(--radius-md);
+      box-shadow: 0 8px 25px rgba(162, 210, 255, 0.25);
+      border: 4px solid white;
+    }
+
+    .arch-caption {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-top: 10px;
+      font-style: italic;
+    }
+
+    /* Accordion styles */
+    .accordion-container {
+      margin: 20px 0;
+    }
+
+    .accordion-item {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius-md);
+      margin-bottom: 10px;
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+
+    .accordion-item:hover {
+      box-shadow: 0 4px 12px rgba(162, 210, 255, 0.2);
+    }
+
+    .accordion-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 20px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text-main);
+      background: #f8fafc;
+      border: none;
+      width: 100%;
+      text-align: left;
+      font-family: 'Quicksand', sans-serif;
+      transition: background 0.2s;
+    }
+
+    .accordion-header:hover {
+      background: #f0f9ff;
+    }
+
+    .accordion-header .acc-icon {
+      transition: transform 0.3s;
+      font-size: 0.8rem;
+    }
+
+    .accordion-header.active .acc-icon {
+      transform: rotate(180deg);
+    }
+
+    .accordion-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+    }
+
+    .accordion-body.open {
+      max-height: 1000px;
+      padding: 0 20px 20px;
+    }
+
+    .accordion-body p {
+      margin: 8px 0;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px;
+      }
+
+      .mse-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .steps-container {
+        grid-template-columns: 1fr;
+      }
+
+      .prediction-example-row {
+        flex-wrap: wrap;
+      }
+
+      .prediction-example-row .diff-bar {
+        flex-basis: 100%;
+        margin-left: 0;
+        margin-top: 4px;
+      }
+
+      table, .comparison-table {
+        font-size: 0.85rem;
+      }
+
+      th, td {
+        padding: 8px 10px;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- Decorative Clouds SVG -->
     <svg class="cloud-decor cloud-1" viewBox="0 0 24 24" fill="currentColor"><path d="M18.42 9.22a6.94 6.94 0 0 0-1.35-3.87A7 7 0 0 0 5.53 7.5 5.5 5.5 0 0 0 6 18h12a5 5 0 0 0 .42-9.78z"/></svg>
     <svg class="cloud-decor cloud-2" viewBox="0 0 24 24" fill="currentColor"><path d="M18.42 9.22a6.94 6.94 0 0 0-1.35-3.87A7 7 0 0 0 5.53 7.5 5.5 5.5 0 0 0 6 18h12a5 5 0 0 0 .42-9.78z"/></svg>
 
@@ -559,44 +1095,29 @@
 
     <blockquote class="q">✨ Путешествие в тысячу миль начинается с одного шага (Лао Цзы)</blockquote>
 
-    <!-- НОВАЯ СЕКЦИЯ С ДАТОЙ И ЧАТБОТОМ -->
     <h2 id="todayDate">Сегодня</h2>
     
     <div class="chat-log-container">
       <h3 style="margin-top: 0; color: #0369a1;">🤖 Лог работы бота поддержки (FAQ)</h3>
       
-      <!-- Запись 1 -->
       <div class="chat-entry">
-        <span class="chat-label user">👤 Вопрос пользователя:</span>
+        <span class="chat-label user"> Вопрос пользователя:</span>
         <div class="chat-content">Сколько ждать мой заказ?</div>
-        
         <div style="margin: 10px 0;"></div>
-        
         <span class="chat-label system">🔍 Найден FAQ-вопрос:</span>
-        <div class="chat-content">
-          Как быстро доставляется заказ? <span class="similarity-badge">sim=0.706</span>
-        </div>
-        
+        <div class="chat-content">Как быстро доставляется заказ? <span class="similarity-badge">sim=0.706</span></div>
         <div style="margin: 10px 0;"></div>
-        
         <span class="chat-label bot">🤖 Ответ бот-FAQ:</span>
         <div class="chat-content">Наш стандартный срок доставки — 3–5 рабочих дней.</div>
       </div>
 
-      <!-- Запись 2 -->
       <div class="chat-entry">
         <span class="chat-label user">👤 Вопрос пользователя:</span>
         <div class="chat-content">Как оплатить заказ?</div>
-        
         <div style="margin: 10px 0;"></div>
-        
-        <span class="chat-label system">🔍 Найден FAQ-вопрос:</span>
-        <div class="chat-content">
-          Какие способы оплаты доступны? <span class="similarity-badge">sim=0.852</span>
-        </div>
-        
+        <span class="chat-label system"> Найден FAQ-вопрос:</span>
+        <div class="chat-content">Какие способы оплаты доступны? <span class="similarity-badge">sim=0.852</span></div>
         <div style="margin: 10px 0;"></div>
-        
         <span class="chat-label bot">🤖 Ответ бот-FAQ:</span>
         <div class="chat-content">Мы принимаем банковские карты, наличные при получении и онлайн-платежи через безопасный шлюз.</div>
       </div>
@@ -632,7 +1153,7 @@
     <p><a href="mailto:vituginamaria0@gmail.com">✉️ Напишите мне</a></p>
 
     <h2>20 декабря, 2025</h2>
-    <p>Поздравляю с наступающим рождеством 2026! <a href="Koladka.odt" title="колядка" download>🎄 Колядка 20.12.2025</a></p>
+    <p>Поздравляю с наступающим рождеством 2026! <a href="Koladka.odt" title="колядка" download> Колядка 20.12.2025</a></p>
     <p><a href="newTree.mp4" title="Новогодняя ёлка" download="Новогодняя_елка.mp4">📹 Скачать видео с новогодней ёлкой (MP4)</a></p>
 
     <h2>01.12.2025</h2>
@@ -646,7 +1167,7 @@
     <blockquote class="q">Путешествие в тысячу миль начинается с одного шага (Лао Цзы)</blockquote>
     <p>Оставляю в прошлом скучную неинтересную локальную файловую систему ради Всемирной паутины.</p>
     <p>
-      <a href="krossvordRU.html">🇷🇺 Русский кроссворд</a> |
+      <a href="krossvordRU.html">🇺 Русский кроссворд</a> |
       <a href="krossvordEN.html">🇬🇧 Английский кроссворд</a>
     </p>
     <p>Нажмите, чтобы открыть или скачать презентацию: <a href="СетьВводный.pptx">📊 Презентация в формате .pptx</a></p>
@@ -679,25 +1200,21 @@
     </table>
     <p><em>💡 Доменное имя — это только <strong>2maria2.github.io</strong>. Остальное — служебная информация.</em></p>
 
-    <!-- Секция предсказаний классификации -->
     <h2>21 января, 2026</h2>
     <h3>🤖 Результаты классификации изображения (ImageNet)</h3>
     
     <div class="prediction-card">
       <div class="card-header">
         <div class="date" id="dateDisplay">
-          📅 <span id="currentDate"></span>
+           <span id="currentDate"></span>
         </div>
       </div>
-
       <div class="card-body">
         <div class="image-wrapper">
           <img src="https://image.qwenlm.ai/public_source/7d12d8bc-a4a6-485d-86f5-edfafb43bf3d/1c4da2259-3420-417e-bddb-8ef46fdb560d.png" alt="Классифицированное изображение">
           <span class="image-label">📷 Изображение</span>
         </div>
-
         <h2 class="predictions-title">🏆 Топ-3 предсказаний</h2>
-
         <div class="predictions-list">
           <div class="prediction-item top-1">
             <div class="prediction-row">
@@ -711,7 +1228,6 @@
               <div class="progress-fill" style="width: 0%" data-width="83.2%"></div>
             </div>
           </div>
-
           <div class="prediction-item top-2">
             <div class="prediction-row">
               <span class="prediction-name">
@@ -724,7 +1240,6 @@
               <div class="progress-fill" style="width: 0%" data-width="47.75%"></div>
             </div>
           </div>
-
           <div class="prediction-item top-3">
             <div class="prediction-row">
               <span class="prediction-name">
@@ -738,7 +1253,6 @@
             </div>
           </div>
         </div>
-
         <div class="card-footer">
           <span>Модель: <strong>ImageNet-1000</strong></span>
           <span class="model-badge">ResNet-50</span>
@@ -751,17 +1265,15 @@
       Это редкая нелетающая птица из Новой Зеландии, поэтому модель не смогла её корректно распознать.
     </p>
 
-    <!-- НОВАЯ СЕКЦИЯ: Регрессионный анализ -->
+    <!-- Регрессионный анализ -->
     <h2 id="regressionDate">Сегодня</h2>
-    <h3>📊 Прогноз успеваемости студентов (Linear Regression)</h3>
+    <h3> Прогноз успеваемости студентов (Linear Regression)</h3>
     
     <div class="regression-section">
       <div class="regression-image-container">
         <img src="https://image.qwenlm.ai/public_source/9ddd414a-d114-40b8-bbf7-52ee4acf8744/1e8eef7ea-c840-4607-a3c4-dcf29bef3de3.png" alt="Cinnamoroll Data Science">
       </div>
-
       <p>Используя библиотеку <code>pandas</code> и модель линейной регрессии, мы проанализировали зависимость баллов за экзамен от часов подготовки.</p>
-
       <div class="regression-highlight">
         <div>
           <strong>Одиночный прогноз:</strong><br>
@@ -772,13 +1284,11 @@
           <span class="score-label">Баллов</span>
         </div>
       </div>
-
       <p><strong>Групповой прогноз для нескольких студентов:</strong></p>
-      
       <table>
         <thead>
           <tr>
-            <th> Часы подготовки</th>
+            <th>🕐 Часы подготовки</th>
             <th>📈 Прогноз баллов</th>
           </tr>
         </thead>
@@ -790,10 +1300,237 @@
           <tr><td>10</td><td>98.50</td></tr>
         </tbody>
       </table>
-      
       <p style="font-size: 0.9rem; color: #64748b; margin-top: 15px;">
         <em>💡 Вывод: Чем больше времени уделяется подготовке, тем выше ожидаемый результат, однако после 10 часов рост замедляется (эффект насыщения).</em>
       </p>
+    </div>
+
+    <!-- ===== НОВЫЙ РАЗДЕЛ: НЕЙРОСЕТЬ ===== -->
+    <div class="neural-section">
+      <h2 id="neuralDate">Сегодня</h2>
+      <h3>🧠 Нейронная сеть: итоговые результаты</h3>
+
+      <div class="nn-main-card">
+        <h3>📋 Итоговые результаты обучения</h3>
+        <div class="mse-cards">
+          <div class="mse-card train">
+            <div class="mse-icon">🎯</div>
+            <div class="mse-label">Ошибка на обучении (MSE)</div>
+            <div class="mse-value">0.0042437424658087605</div>
+            <span class="mse-status">✅ Отлично</span>
+          </div>
+          <div class="mse-card test">
+            <div class="mse-icon"></div>
+            <div class="mse-label">Ошибка на тесте (MSE)</div>
+            <div class="mse-value">0.0040212108331024845</div>
+            <span class="mse-status">✅ Отлично</span>
+          </div>
+        </div>
+
+        <div class="prediction-examples">
+          <h3>📊 Примеры прогнозов (реальные оценки)</h3>
+          <div class="prediction-example-row">
+            <span class="example-label">Факт:</span>
+            <span class="fact-value">91.0</span>
+            <span class="arrow-icon">→</span>
+            <span class="pred-value">78.8</span>
+            <div class="diff-bar"><div class="diff-fill medium" data-width="12.2%"></div></div>
+          </div>
+          <div class="prediction-example-row">
+            <span class="example-label">Факт:</span>
+            <span class="fact-value">53.0</span>
+            <span class="arrow-icon">→</span>
+            <span class="pred-value">57.1</span>
+            <div class="diff-bar"><div class="diff-fill good" data-width="4.1%"></div></div>
+          </div>
+          <div class="prediction-example-row">
+            <span class="example-label">Факт:</span>
+            <span class="fact-value">80.0</span>
+            <span class="arrow-icon">→</span>
+            <span class="pred-value">78.4</span>
+            <div class="diff-bar"><div class="diff-fill good" data-width="1.6%"></div></div>
+          </div>
+          <div class="prediction-example-row">
+            <span class="example-label">Факт:</span>
+            <span class="fact-value">74.0</span>
+            <span class="arrow-icon">→</span>
+            <span class="pred-value">74.1</span>
+            <div class="diff-bar"><div class="diff-fill good" data-width="0.1%"></div></div>
+          </div>
+          <div class="prediction-example-row">
+            <span class="example-label">Факт:</span>
+            <span class="fact-value">84.0</span>
+            <span class="arrow-icon">→</span>
+            <span class="pred-value">84.9</span>
+            <div class="diff-bar"><div class="diff-fill good" data-width="0.9%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Как работает нейросеть -->
+      <div class="nn-explain-card">
+        <h3>🧠 Как работает нейросеть? Кратко и понятно</h3>
+        
+        <div class="nn-intro">
+          <strong>Нейросеть</strong> — это модель, которая <em>не запоминает правила</em>, а настраивает <span class="highlight-text">коэффициенты важности (веса)</span>, чтобы минимизировать ошибку прогноза. В нашем случае она предсказывает балл по математике на основе <strong>4 признаков</strong>.
+        </div>
+
+        <!-- Архитектура -->
+        <div class="arch-image-wrap">
+          <img src="https://image.qwenlm.ai/public_source/11cac785-e643-4db5-83aa-c945565c2551/109dbf050-b952-4706-8fb4-3be624b9f582.png" alt="Архитектура нейросети">
+          <p class="arch-caption">Архитектура: Вход (4 нейрона) → Скрытый слой (2 нейрона) → Выход (1 нейрон)</p>
+        </div>
+
+        <h3 style="color: #7c3aed; margin-top: 25px;">🔹 Логика работы в 3 шага</h3>
+        <div class="steps-container">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <div class="step-icon">📥</div>
+            <h4>Вход данных</h4>
+            <p>Признаки (<code>gender</code>, <code>lunch</code>, <code>prep</code>, <code>reading score</code>) подаются в сеть.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <div class="step-icon">⚙️</div>
+            <h4>Прямой проход</h4>
+            <p>Каждый нейрон умножает входы на свои веса, суммирует их и пропускает через функцию <code>sigmoid</code>. Это добавляет нелинейность: модель улавливает сложные связи.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <div class="step-icon">📤</div>
+            <h4>Выход</h4>
+            <p>Получаем прогноз <strong>math score</strong> — ожидаемый балл за экзамен по математике.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Как она учится? -->
+      <div class="learning-section">
+        <h3>🔄 Как она учится?</h3>
+        <div class="learning-timeline">
+          <div class="timeline-item">
+            <p>🎲 <strong>Начало:</strong> веса случайные → прогноз далёк от истины.</p>
+          </div>
+          <div class="timeline-item">
+            <p>📉 <strong>Вычисление ошибки:</strong> сеть вычисляет <strong>MSE</strong> (среднеквадратичную ошибку) между прогнозом и реальным значением.</p>
+          </div>
+          <div class="timeline-item">
+            <p>🎯 <strong>Обратное распространение:</strong> метод корректирует веса — уменьшает те, что усиливали ошибку, и усиливает полезные. Так за <strong>1000 эпох</strong> «ручки настройки» встают в оптимальное положение.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Сравнение моделей -->
+      <div class="comparison-card">
+        <h3>📊 Сравнение с другими моделями</h3>
+        
+        <!-- Иллюстрация сравнения -->
+        <div class="arch-image-wrap">
+          <img src="https://image.qwenlm.ai/public_source/11cac785-e643-4db5-83aa-c945565c2551/1d2c1fba9-bd03-41cb-8042-cbaf07ad634b.png" alt="Сравнение моделей" style="max-height: 300px;">
+        </div>
+
+        <div class="comparison-table-wrap">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Модель</th>
+                <th>Как принимает решение?</th>
+                <th>Простая аналогия</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="model-emoji">📏</span>Линейная регрессия</td>
+                <td>Одна формула: <code>y = w·x + b</code></td>
+                <td><span class="analog-badge">📏 Прямая линейка через облако точек</span></td>
+              </tr>
+              <tr>
+                <td><span class="model-emoji">🌳</span>Дерево решений</td>
+                <td>Набор условий: <code>ЕСЛИ X &gt; A → налево, иначе → направо</code></td>
+                <td><span class="analog-badge">🌳 Блок-схема с ветвлениями</span></td>
+              </tr>
+              <tr class="highlight-row">
+                <td><span class="model-emoji">🧠</span>Нейросеть</td>
+                <td>Цепочка взвешенных сумм + нелинейная активация на скрытом слое</td>
+                <td><span class="analog-badge">🎛️ Пульт с регуляторами, которые настраиваются автоматически</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Почему нейросеть точнее -->
+      <div class="nn-better-card">
+        <h3>✅ Почему нейросеть точнее?</h3>
+        <p>
+          Линейная модель видит только <strong>прямые зависимости</strong>, дерево — только <strong>кусочные правила</strong>. Нейросеть благодаря скрытому слою и <code>sigmoid</code> аппроксимирует плавные многомерные зависимости, где <em>несколько признаков влияют на результат одновременно</em>.
+        </p>
+        <p>
+          💡 Именно поэтому добавление <span class="highlight-text">reading score</span> резко снизило ошибку: сеть научилась комбинировать успеваемость по чтению с социальными факторами.
+        </p>
+      </div>
+
+      <!-- Аккордеон: Подробные ответы -->
+      <div class="accordion-container">
+        <h3 style="color: #0369a1; text-align: center; margin-bottom: 15px;">📚 Подробности (нажмите, чтобы раскрыть)</h3>
+        
+        <div class="accordion-item">
+          <button class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="acc-icon">▼</span>
+            📥 Что такое MSE и почему оно важно?
+          </button>
+          <div class="accordion-body">
+            <p><strong>MSE (Mean Squared Error)</strong> — среднеквадратичная ошибка. Она показывает, насколько в среднем прогнозы отличаются от реальных значений.</p>
+            <p>Чем ближе MSE к <code>0</code>, тем точнее модель. Значения ~<code>0.004</code> означают, что ошибка в среднем составляет менее 1 балла — это отличный результат!</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="acc-icon">▼</span>
+            ️ Что делает функция sigmoid?
+          </button>
+          <div class="accordion-body">
+            <p><strong>Sigmoid</strong> — это нелинейная функция активации, которая «сжимает» любое число в диапазон от 0 до 1:</p>
+            <p style="text-align: center; font-family: 'Courier New', monospace; font-size: 1.1rem; margin: 10px 0;">
+              <code>σ(x) = 1 / (1 + e^(-x))</code>
+            </p>
+            <p>Без неё нейросеть была бы просто набором линейных уравнений и не могла бы улавливать сложные паттерны в данных.</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="acc-icon">▼</span>
+             Что такое обратное распространение ошибки?
+          </button>
+          <div class="accordion-body">
+            <p><strong>Backpropagation</strong> — это алгоритм, который «идёт назад» от ошибки к весам и определяет, какой вес насколько «виноват» в ошибке.</p>
+            <p>Затем веса корректируются по градиенту — в сторону, которая уменьшает ошибку. Это повторяется тысячи раз (эпох), пока модель не научится делать точные прогнозы.</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="acc-icon">▼</span>
+            📊 Какие 4 признака использовались?
+          </button>
+          <div class="accordion-body">
+            <table>
+              <thead>
+                <tr><th>Признак</th><th>Описание</th><th>Тип</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>gender</code></td><td>Пол студента</td><td>Категориальный</td></tr>
+                <tr><td><code>lunch</code></td><td>Тип обеда (стандартный/бесплатный)</td><td>Категориальный</td></tr>
+                <tr><td><code>prep</code></td><td>Прошёл ли курс подготовки</td><td>Категориальный</td></tr>
+                <tr><td><code>reading score</code></td><td>Балл за экзамен по чтению</td><td>Числовой</td></tr>
+              </tbody>
+            </table>
+            <p>Целевая переменная: <strong>math score</strong> — балл за экзамен по математике.</p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- RSA Шифрование -->
@@ -824,7 +1561,7 @@
   </div>
 
   <script>
-    // ==================== Дата для карточки предсказаний и заголовка ====================
+    // ==================== Даты ====================
     function setDate() {
       const now = new Date();
       const options = { 
@@ -835,23 +1572,17 @@
       };
       const dateString = now.toLocaleDateString('ru-RU', options);
       
-      // Установка даты в карточку предсказаний
       const cardDateElement = document.getElementById('currentDate');
-      if(cardDateElement) {
-        cardDateElement.textContent = dateString;
-      }
+      if(cardDateElement) cardDateElement.textContent = dateString;
 
-      // Установка даты в новый заголовок "Сегодня"
       const todayHeader = document.getElementById('todayDate');
-      if(todayHeader) {
-        todayHeader.textContent = dateString;
-      }
+      if(todayHeader) todayHeader.textContent = dateString;
 
-      // Установка даты в заголовок регрессии
       const regressionHeader = document.getElementById('regressionDate');
-      if(regressionHeader) {
-        regressionHeader.textContent = dateString;
-      }
+      if(regressionHeader) regressionHeader.textContent = dateString;
+
+      const neuralHeader = document.getElementById('neuralDate');
+      if(neuralHeader) neuralHeader.textContent = dateString;
     }
 
     // Анимация прогресс-баров
@@ -861,6 +1592,15 @@
           bar.style.width = bar.getAttribute('data-width');
         });
       }, 300);
+    }
+
+    // Анимация полосок разницы
+    function animateDiffBars() {
+      setTimeout(() => {
+        document.querySelectorAll('.diff-fill').forEach(bar => {
+          bar.style.width = bar.getAttribute('data-width');
+        });
+      }, 500);
     }
 
     // ==================== RSA Шифрование ====================
@@ -923,20 +1663,29 @@
         'm = C^d mod n = ' + C + '^' + d + ' mod ' + n + ' = ' + m;
     }
 
-    // Инициализация при загрузке страницы
+    // ==================== Аккордеон ====================
+    function toggleAccordion(headerBtn) {
+      const body = headerBtn.nextElementSibling;
+      const isOpen = body.classList.contains('open');
+      
+      // Закрыть все
+      document.querySelectorAll('.accordion-body').forEach(b => b.classList.remove('open'));
+      document.querySelectorAll('.accordion-header').forEach(h => h.classList.remove('active'));
+      
+      // Открыть текущий если был закрыт
+      if (!isOpen) {
+        body.classList.add('open');
+        headerBtn.classList.add('active');
+      }
+    }
+
+    // Инициализация
     document.addEventListener('DOMContentLoaded', () => {
       setDate();
       animateProgress();
+      animateDiffBars();
     });
   </script>
- 
-  <img src="Icons/Диаграмма без названия.drawio (7).png" alt="Краткое описание картинки">
-  <img src="Icons/Диаграмма без названия.drawio (9).png" alt="Краткое описание картинки">
-  <img src="Icons/Диаграмма без названия.drawio (10).png" alt="Краткое описание картинки">
-  <img src="Icons/Диаграмма без названия.drawio (11).png" alt="Краткое описание картинки">
-  <img src="Icons/Диаграмма без названия.drawio (12).png" alt="Краткое описание картинки">
-  <img src="Icons/Диаграмма без названия.drawio (13).png" alt="Краткое описание картинки">
-  <img src="Icons/Диаграмма без названия.drawio (14).png" alt="Краткое описание картинки">
 </body>
 </html>
 
