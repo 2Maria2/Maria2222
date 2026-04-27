@@ -1693,6 +1693,39 @@
   <img src="Icons/Диаграмма без названия.drawio (12).png" alt="Краткое описание картинки">
   <img src="Icons/Диаграмма без названия.drawio (13).png" alt="Краткое описание картинки">
   <img src="Icons/Диаграмма без названия.drawio (14).png" alt="Краткое описание картинки">
+  # 1. JSON-файл (для динамического чтения через JS или бэкенд)
+metrics = {
+    "credit_model_accuracy": round(accuracy_credit, 4),
+    "casco_model_accuracy": round(accuracy_casco, 4),
+    "timestamp": pd.Timestamp.now().strftime("%Y-%m-%d %H:%M:%S")
+}
+with open("model_metrics.json", "w", encoding="utf-8") as f:
+    json.dump(metrics, f, ensure_ascii=False, indent=2)
+
+# 2. Готовая HTML-страница (можно сразу загрузить на статический хостинг)
+html_report = f"""<!DOCTYPE html>
+<html lang="ru">
+<head><meta charset="UTF-8"><title>Метрики моделей</title></head>
+<body style="font-family: sans-serif; padding: 40px;">
+    <h1>Результаты оценки моделей</h1>
+    <table border="1" cellpadding="10" style="border-collapse: collapse;">
+        <tr><th>Модель</th><th>Точность (Accuracy)</th></tr>
+        <tr><td>Кредитное одобрение</td><td><b>{accuracy_credit*100:.2f}%</b></td></tr>
+        <tr><td>Страхование КАСКО</td><td><b>{accuracy_casco*100:.2f}%</b></td></tr>
+    </table>
+    <p><i>Дата генерации: {metrics['timestamp']}</i></p>
+    <h3>Визуализация деревьев:</h3>
+    <img src="tree_credit.png" alt="Дерево кредита" width="80%"><br><br>
+    <img src="tree_casco.png" alt="Дерево КАСКО" width="60%">
+</body>
+</html>"""
+with open("report.html", "w", encoding="utf-8") as f:
+    f.write(html_report)
+
+print("\n📦 Файлы готовы к выгрузке на сайт:")
+print("   • model_metrics.json  (данные для API/JS)")
+print("   • report.html         (готовая веб-страница)")
+print("   • tree_credit.png / tree_casco.png (визуализации)")
 </body>
 </html>
 </body>
